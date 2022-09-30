@@ -8,7 +8,7 @@ void GraphicsManager::Startup() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    const char* p = Default.window_name.c_str();//packs String into const char
+    const char* p = Default.window_name.c_str();
     window = glfwCreateWindow(Default.window_width, Default.window_height, p, Default.window_fullscreen ? glfwGetPrimaryMonitor() : 0, 0);
     glfwSetWindowAspectRatio(window, Default.window_width, Default.window_height);
     if (!window)
@@ -18,9 +18,12 @@ void GraphicsManager::Startup() {
     }
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
-    delete p;
+    //delete p;
 }
 
+GLFWwindow* GraphicsManager::getWindowPointer() {
+    return window;
+}
 
 void GraphicsManager::Shutdown() {
     glfwDestroyWindow(window);

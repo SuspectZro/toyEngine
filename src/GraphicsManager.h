@@ -4,10 +4,13 @@
 #include "Types.h"
 #include <iostream>
 #include <ostream>
+//#include "InputManager.h"
+
 
 using namespace data;
 
 class GraphicsManager {
+	friend class InputManager;
 	public:
 		
 
@@ -26,9 +29,12 @@ class GraphicsManager {
 		GraphicsManager() {
 			Default.window_width = 600;
 			Default.window_height = 300;
-			Default.window_name = "default";
+			Default.window_name = "ToyEngine";
 			Default.window_fullscreen = false;
 		};
+
+		GLFWwindow* getWindowPointer();
+		
 	private:
 		GLFWwindow* window;
 		

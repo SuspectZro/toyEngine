@@ -1,32 +1,41 @@
 #pragma once
 #include "GraphicsManager.h"
-//#include "InputManager.h"
-#include <functional>
-#include<chrono>
-#include<thread>
+#include "InputManager.h"
+#include "SoundManager.h"
+//#include "Types.h"
 
-typedef std::function<void()> UpdateCallback;
-typedef std::chrono::duration<real> intervals;
+//using namespace data;
 
-namespace toyEngine{
-	class Engine {
-		public:
-			
-			GraphicsManager graphics;
-			//InputManager input;
-
-			void Startup();
-			void Shutdown();
-			void RunGameLoop(UpdateCallback ucb);
-
-			Engine() {};
-	};
+//namespace toyEngine{
+//#pragma once
+//#define GLFW_INCLUDE_NONE
+#include "GLFW/glfw3.h"
+#include "Types.h"
+#include <iostream>
+#include <ostream>
 
 
+class Engine {
+public:
+
+	SoundManager* sound;
+	GraphicsManager* graphics;
+	InputManager* input;
+
+	void Startup();
+	void Shutdown();
+	void RunGameLoop(UpdateCallback ucb);
+	void PlaySound(const string);
+	Engine();
+	~Engine();
+
+};
 
 
 
 
 
 
-}
+
+
+//}
