@@ -5,13 +5,16 @@
 	graphics = new GraphicsManager();
 	input = new InputManager(this);
 	sound = new SoundManager();
-
+	ecs = new EntityManager();
+	script = new ScriptManager(this);
 	}
 
 	Engine::~Engine() {
 		delete graphics;
 		delete input;
 		delete sound;
+		delete ecs;
+		delete script;
 	}
 
 	void Engine::PlaySound(const string name) {
@@ -22,11 +25,22 @@
 		graphics->Startup();
 		//GLFWwindow* window = graphics.getWindowPointer();
 		input->Startup(this);
+		ecs->StartUp();
+#if graph
+		script->StartUp(graphics, ecs );
+#elif ECS
+		script->StartUp(ecs, graphics);
+#else
+		script->StartUp(this);
+#endif
+
 	}
 	void Engine::Shutdown() {
 		//input.Shutdown();
 		graphics->Shutdown();
 		sound->Shutdown();
+		ecs->ShutDown();
+		script->ShutDown();
 	}
 
 	void Engine::RunGameLoop(UpdateCallback ucb) {
@@ -34,11 +48,13 @@
 		intervals t(1. / targetFps);
 		int numberOfTimes = 1;
 		int counterFrame = 0;
-		
+		//int delay = 60
 		std::chrono::steady_clock::time_point t0 = std::chrono::steady_clock::now();
 		bool running = true;
+		std::vector<GraphicsManager::Sprite> sprites;
 		while (running) {
 			counterFrame++;
+			//delay--;
 			if (counterFrame % int(targetFps * numberOfTimes) == 0) {
 				intervals t1 = (std::chrono::steady_clock::now()) - t0;
 				float trackFps = counterFrame / t1.count() / (targetFps * numberOfTimes);
@@ -52,7 +68,55 @@
 			running = (input->Update() == 1);
 
 			ucb();
-			graphics->Draw();
+			
+			
+			//std::cout << "here" << "\n";
+			
+
+			ecs->ForEach<Sprite, Position>([&](EntityID id) {
+				
+				GraphicsManager::Sprite s;
+				Position p = ecs->Get<Position>(id);
+				Sprite   sp = ecs->Get<Sprite>(id);
+				s.x = p.x;
+				s.y = p.y;
+				s.z = 0;
+				//s.width = 50;
+				//s.height = 50;
+				s.name = sp.image;
+				real scale = ecs->Get<Sprite>(id).size;
+				s.scale = vec3(scale,scale, scale);
+				sprites.push_back(s);
+				});
+			ecs->ForEach<Script>([&](EntityID id) {
+
+				script->execute(ecs->Get<Script>(id).name, id);
+
+				});
+
+
+			ecs->ForEach<Gravity, Velocity>([&](EntityID id) {
+				
+				Gravity g = ecs->Get<Gravity>(id);
+
+				ecs->Get<Velocity>(id).y += g.meters_per_second;
+				
+				});
+			ecs->ForEach<Position, Velocity>([&](EntityID id) {
+				Velocity v = ecs->Get<Velocity>(id);
+				//Position p = ecs->Get<Position>(id);
+
+				ecs->Get<Position>(id).x += v.x;
+				//std::cout << "v.x: " << v.x << "\n";
+				//p.y += v.y;
+				ecs->Get<Position>(id).y += v.y;
+				});
+
+			graphics->Draw(sprites);
+
+			//std::cout << sprites.size() << "\n";
+			sprites.clear();
+			//graphics->Draw();
 			std::this_thread::sleep_for(t);
 		}
 
@@ -61,13 +125,140 @@
 		engine = e;
 		window = e->graphics->getWindowPointer();
 	}
+	void ScriptManager::StartUp(Engine* e) {
+		LoadScript("Master", "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\src\\MasterScript.lua");
+		
 
+		engine = e;
+		lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::table);
+		lua.script("math.randomseed(0)");
+		//lua.new_usertype<glm::vec3>("vector",
+		//	sol::constructors<glm::vec3(),glm::vec3(float,float,float)>(),"x",&glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
+		lua.new_usertype<glm::vec3>("vec3",
+			sol::constructors<glm::vec3(), glm::vec3(float), glm::vec3(float, float, float)>(),
+			"x", &glm::vec3::x,
+			"y", &glm::vec3::y,
+			"z", &glm::vec3::z,
+			// optional and fancy: operator overloading. see: https://github.com/ThePhD/sol2/issues/547
+			sol::meta_function::addition, sol::overload([](const glm::vec3& v1, const glm::vec3& v2) -> glm::vec3 { return v1 + v2; }),
+			sol::meta_function::subtraction, sol::overload([](const glm::vec3& v1, const glm::vec3& v2) -> glm::vec3 { return v1 - v2; }),
+			sol::meta_function::multiplication, sol::overload(
+				[](const glm::vec3& v1, const glm::vec3& v2) -> glm::vec3 { return v1 * v2; },
+				[](const glm::vec3& v1, float f) -> glm::vec3 { return v1 * f; },
+				[](float f, const glm::vec3& v1) -> glm::vec3 { return f * v1; }
+			)
+			);
+		lua.new_enum("Stance",
+			"Idle", 0,
+			"Punch", 1,
+			"Straight", 2
+		);
+		lua.new_enum("KEYBOARD",
+			//"SPACE", KEY_SPACE,
+			"A", GLFW_KEY_A,
+			"S", GLFW_KEY_S,
+			"D", GLFW_KEY_D,
+			"W", GLFW_KEY_W
+
+		);
+		lua.set_function("Play", [&](string s) {
+			engine->PlaySound(s);
+			});
+		lua.set_function("KeyIsDown", [&](const int keycode) -> bool {
+			return(glfwGetKey(engine->graphics->getWindowPointer(), keycode) == 0 ? false : true);
+			//return input->KeyIsDown(keycode);
+			});
+		//lua.set_function("LoadScript", [&](const string name, const string path) {
+		//	LoadScript(name, path);
+		//	});
+
+		
+
+
+		lua.new_usertype<Position>("Position",
+			sol::constructors<Position()>(),
+			"px", &Position::x,
+			"py", &Position::y
+			);
+		lua.new_usertype<Velocity>("Velocity",
+			sol::constructors<Velocity()>(),
+			"vx", &Velocity::x,
+			"vy", &Velocity::y
+			);
+		lua.new_usertype<Flag>("Flag",
+			sol::constructors<Flag()>(),
+			"f", &Flag::flag
+			);
+		lua.new_usertype<Sprite>("Sprite",
+			sol::constructors<Sprite()>(),
+			"name", &Sprite::image,
+			"size", &Sprite::size
+			);
+		lua.new_usertype<Script>("Script",
+			sol::constructors<Script()>(),
+			"name", &Script::name
+			);
+		lua.new_usertype<Gravity>("Gravity",
+			sol::constructors<Gravity()>(),
+			"mps", &Gravity::meters_per_second
+			);
+		//trying to pass a string to trigger the animation
+		lua.new_usertype<State>("State",
+			sol::constructors<State()>(),
+			"state", &State::name
+			);
+
+		lua.set_function("GetPosition", [&](EntityID id) -> Position& {
+			return engine->ecs->Get<Position>(id);
+
+			});
+		lua.set_function("GetVelocity", [&](EntityID id) -> Velocity& {
+			return engine->ecs->Get<Velocity>(id);
+
+			});
+		lua.set_function("GetHealth", [&](EntityID id) -> Health& {
+			return engine->ecs->Get<Health>(id);
+
+			});
+		lua.set_function("GetGravity", [&](EntityID id) -> Gravity& {
+			return engine->ecs->Get<Gravity>(id);
+
+			});
+		lua.set_function("GetSprite", [&](EntityID id) -> Sprite& {
+			return engine->ecs->Get<Sprite>(id);
+
+			});
+		lua.set_function("GetUnusedId", [&]() ->EntityID{
+			return engine->ecs->GetUnusedID();
+
+			});
+		lua.set_function("GetScript", [&](EntityID id) -> Script& {
+			return engine->ecs->Get<Script>(id);
+
+			});
+		lua.set_function("GetFlag", [&](EntityID id) -> Flag& {
+			return engine->ecs->Get<Flag>(id);
+
+			});
+		LoadScript("player1", "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\src\\newScript.lua");
+		LoadScript("test1", "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\src\\aiRbow.lua");
+		//scripts["test1"](10, 5,1);
+		scripts["Master"]();
+
+	}
+	
 	bool InputManager::KeyIsPressed() {
+		//KeyIsDown(65);
+		//int width, height;
+		//glfwGetFramebufferSize(window, &(width), &(height));
+
+		//std::cout << width << " " << height << "\n";
 		int r;
 		for (int i = A; i != undefined; i++) {
 			switch (i) {
 			case A:
 				r = glfwGetKey(window, GLFW_KEY_A);
+				//std::cout << "Egnine " << r << "\n";
 				if (r) {
 					std::cout << "A" << "\n";
 
@@ -78,7 +269,23 @@
 				r = glfwGetKey(window, GLFW_KEY_S);
 				if (r) {
 					std::cout << "S" << "\n";
-					engine->PlaySound("complete");
+					//engine->PlaySound("complete");
+
+				}
+				break;
+			case D:
+				r = glfwGetKey(window, GLFW_KEY_D);
+				if (r) {
+					std::cout << "D" << "\n";
+					//engine->PlaySound("complete");
+
+				}
+				break;
+			case W:
+				r = glfwGetKey(window, GLFW_KEY_W);
+				if (r) {
+					std::cout << "W" << "\n";
+					//engine->PlaySound("complete");
 
 				}
 				break;
@@ -93,4 +300,3 @@
 		}
 		return false;
 	}
-//}

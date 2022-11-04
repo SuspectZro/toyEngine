@@ -1,0 +1,44 @@
+local x = ...
+Play("complete")
+--print("executing master script")
+--LoadScript("test2", "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\src\\newScript.lua")
+--LoadScript("test1", "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\src\\player1.lua")
+id = GetUnusedId()
+--print(id)
+--EntityID ID = GetUnusedID();
+GetPosition(id).px = 20
+GetPosition(id).py = 50
+GetSprite(id).name = "rbow"
+GetSprite(id).size = 10
+GetScript(id).name = "test1"
+id = GetUnusedId()
+GetPosition(id).px = -90
+GetPosition(id).py = -30
+GetVelocity(id).vx = 0.2
+GetVelocity(id).vy = 0.2
+GetGravity(id).mps = -0.08
+GetSprite(id).name = "player1"
+GetSprite(id).size = 50
+GetScript(id).name = "player1"
+
+		--Position p;
+	---	p.x = 20;
+	--	p.y = 50;
+	--	//Flag f;
+	--	//f = 1.0;
+	--	Get<Position>(ID) = p;
+		
+	--	std::cout << Get<Position>(ID).x << " \n";
+	--	ID = GetUnusedID();
+	--	Get<Sprite>(ID) = Sprite({ "rbow",10.0 });
+	--	p.x = -50;
+	--	p.y = -10;
+	--	Get<Flag>(ID) = Flag({ 1.0 });
+	--	Get<Script>(ID) = Script({ "test1" });
+	--	Get<Position>(ID) = p;
+		
+	--	ID = GetUnusedID();
+	--	Get<Sprite>(ID) = Sprite({ "pink",30.0 });
+	--	p.x = 100;
+	--	p.y = 0;
+	--	Get<Position>(ID) = p;

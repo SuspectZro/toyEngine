@@ -28,6 +28,7 @@ public:
 	void ShutDown();
 	int Update();
 	bool KeyIsPressed();
+	//bool KeyIsDown(int key);
 	//InputManager() {};
 
 };

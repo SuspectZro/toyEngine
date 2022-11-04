@@ -22,6 +22,8 @@ class GraphicsManager {
 			real x;
 			real y;
 			real z;
+			real width;
+			real height;
 			vec3 scale;
 
 		};
@@ -50,15 +52,19 @@ class GraphicsManager {
 		void Draw(const std::vector<Sprite>& allSprites);
 		
 		
-
+		struct Image{
+			sg_image image;
+			real width;
+			real height;
+		};
 
 	private:
 		GLFWwindow* window;
 		sg_pipeline pipe;
 		sg_bindings binds;
-		sg_pass_action pa;
+		sg_pass_action pa{};
 		sg_buffer vertex_buffer;
-		std::unordered_map< string, sg_image > images;
+		std::unordered_map< string, Image > images;
 		std::vector<Sprite> sprites;
 
 };

@@ -4,7 +4,7 @@ add_requires("glfw")
 add_requires("spdlog")
 add_requires("soloud")
 add_requires("glm")
---add_requires("stb")
+add_requires("lua","sol2")
 
 includes("external/xmake_soloud.lua")
 
@@ -17,8 +17,8 @@ target("toyEngine")
     add_packages("spdlog")
     add_packages("soloud", {public = true})
     add_packages("glm", {public = true})
-    --add_packages("stb", {public = true})
-
+    add_packages("lua")
+    add_packages("sol2", {public = true})
     -- Declare our engine's header path.
     -- This allows targets that depend on the engine to #include them.
     add_includedirs("src", {public = true})

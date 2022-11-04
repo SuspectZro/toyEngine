@@ -16,5 +16,15 @@ namespace data {
 	typedef glm::vec3 vec3;
 	typedef glm::vec4 vec4;
 	//typedef std::vector ;
+	//struct Position { real x, y; }; // or: 
+	struct Position : public vec2 {};
 
+	//struct Velocity { real x, y; }; // or: 
+	struct Velocity : public vec2 {};
+	struct Gravity { real meters_per_second; };
+	struct Sprite { string image; real size; };
+	struct Health { real percent; };
+	struct Script { string name; };
+	struct Flag { real flag; };
+	struct State { string name; int counter; };
 }

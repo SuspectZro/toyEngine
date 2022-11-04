@@ -79,7 +79,7 @@ void GraphicsManager::Startup() {
     layout(location=1) in vec2 texcoords0;
     out vec2 texcoords;
     void main() {
-        gl_Position = vec4( position, 0.0, 1.0 );
+        gl_Position = projection*transform*vec4( position, 0.0, 1.0 );
         texcoords = texcoords0;
     })";
 
@@ -99,7 +99,7 @@ void GraphicsManager::Startup() {
     in vec2 texcoords;
     out vec4 frag_color;
     void main() {
-        frag_color = vec4(1.0,0.0,0.0,1.0); //texture( tex, texcoords );
+        frag_color = texture( tex, texcoords );
         // If we're not drawing back to front, discard very transparent pixels so we
         // don't write to the depth buffer and prevent farther sprites from drawing.
         if( frag_color.a < 0.1 ) discard;
@@ -122,17 +122,38 @@ void GraphicsManager::Startup() {
     sg_bindings bindings{};
     bindings.vertex_buffers[0] = vertex_buffer;
 
-    string path = "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\assets\\rbow.png";
-    std::cout << path;
-    string complete = "rbow";
-    loadImage(complete, path);
-    std::cout << "loading done \n";
-
-
-    //binds.fs_images[0] = images[complete];
     binds = bindings;
-
-
+    //loading all images
+    std::pair<string, string> list[4] = { {"rbow","C:\\Users\\ruiz_\\toyEngine\\toyEngine\\assets\\rbow.png"},
+        {"player1","C:\\Users\\ruiz_\\toyEngine\\toyEngine\\assets\\player1\\idle.png"},
+    {"p1p","C:\\Users\\ruiz_\\toyEngine\\toyEngine\\assets\\player1\\punch.png"},
+    {"p1s","C:\\Users\\ruiz_\\toyEngine\\toyEngine\\assets\\player1\\striaght.png"} };
+    
+    for (auto item : list) {
+        loadImage(item.first, item.second);
+    }
+    //create all sprites and link them to their images
+   /*
+    Sprite s;
+    s.name = list[0].first;
+    s.x = 50;
+    s.y = 50;
+    s.z = 0;
+    s.width = images[s.name].width;
+    s.height = images[s.name].height;
+    s.scale = vec3(5.0, 5.0, 5.0);
+    sprites.push_back(s);
+    
+    Sprite s2;
+    s2.name = list[1].first;
+    s2.x = 0;
+    s2.y = 0;
+    s2.z = 0;
+    s2.width = images[s2.name].width;
+    s2.height = images[s2.name].height;
+    s2.scale = vec3(10.0, 10.0, 10.0);
+    sprites.push_back(s2);
+    */
 }
 
 bool GraphicsManager::loadImage(const string& name, const string& path){
@@ -155,19 +176,18 @@ bool GraphicsManager::loadImage(const string& name, const string& path){
         image_desc.data.subimage[0][0].size = (size_t)(width * height * 4);
 
         sg_image image = sg_make_image(image_desc);
-        std::cout << width << " \n";
-        std::cout << height << " \n";
+        //std::cout << width << " \n";
+        //std::cout << height << " \n";
         //std::cout << *data << " \n";
         stbi_image_free(data);
         //binds.fs_images[0] = image;
-        images[name] = image;
-        Sprite s;
-        s.name = name;
-        s.x = 0;
-        s.y = 0;
-        s.z = 0;
-        s.scale = vec3(10.0, 10.0, 10.0);
-        sprites.push_back(s);
+        
+        //images.insert({ {name,w} });
+        //images[name].load(path.c_str());
+        images[name].image = image;
+        images[name].width = width;
+        images[name].height = height;
+        
         arval = true;
        
     }
@@ -189,18 +209,19 @@ GLFWwindow* GraphicsManager::getWindowPointer() {
 
 void GraphicsManager::Shutdown() {
     for (auto name : images) {
-        sg_destroy_image(name.second);//first is the name second is the id in gpu
+        sg_destroy_image(name.second.image);//first is the name second is the id in gpu
     }
     sg_shutdown();
     glfwDestroyWindow(window);
     glfwTerminate();
     
 }
-
+/*
 void GraphicsManager::Draw() {
     Draw(sprites);
     
 }
+*/
 
 void GraphicsManager::Draw(const std::vector<Sprite>& allSprites) {
     int height;
@@ -212,8 +233,8 @@ void GraphicsManager::Draw(const std::vector<Sprite>& allSprites) {
      // Start with an identity matrix.
      uniforms.projection = mat4{ 1 };
      // Scale x and y by 1/100.
-     //uniforms.projection[0][0] = uniforms.projection[1][1] = 1. / 100.;
-     uniforms.projection[0][0] = uniforms.projection[1][1] = 1.0;
+     uniforms.projection[0][0] = uniforms.projection[1][1] = 1. / 100.;
+     //uniforms.projection[0][0] = uniforms.projection[1][1] = 1.0;
      // Scale the long edge by an additional 1/(long/short) = short/long.
      
      if (width < height) {
@@ -223,10 +244,10 @@ void GraphicsManager::Draw(const std::vector<Sprite>& allSprites) {
      else {
          uniforms.projection[0][0] *= height;
          uniforms.projection[0][0] /= width;
-     }//windoww
+     }
      
      for (auto sprite : allSprites) {
-        // std::cout << "drawing sprite: " << sprite.name << "\n";
+        
          real x, y, z;
          vec3 scaleI;
          x = sprite.x;
@@ -237,21 +258,20 @@ void GraphicsManager::Draw(const std::vector<Sprite>& allSprites) {
          
          uniforms.transform = translate(mat4{ 1 }, vec3(position, z)) * scale(mat4{ 1 }, vec3(scaleI));
        //spite width 
-         if (width < height) {
-             uniforms.transform = uniforms.transform * scale(mat4{ 1 }, vec3(real(width) / height, 1.0, 1.0));
+         if (sprite.width < sprite.height) {
+             uniforms.transform = uniforms.transform * scale(mat4{ 1 }, vec3(real(sprite.width) / sprite.height, 1.0, 1.0));
              //uniforms.transform = (uniforms.transform * scale) * vec3(real(width) / height, 1.0, 1.0));
          }
          else {
-             uniforms.transform = uniforms.transform * scale(mat4{ 1 }, vec3(1.0, real(height) / width, 1.0));
+             uniforms.transform = uniforms.transform * scale(mat4{ 1 }, vec3(1.0, real(sprite.height) / sprite.width, 1.0));
              //uniforms.transform = (uniforms.transform * scale) * vec3(1.0, real(height) / width, 1.0));
 
          }
          sg_apply_uniforms(SG_SHADERSTAGE_VS, 0, SG_RANGE(uniforms));
          sg_apply_uniforms(SG_SHADERSTAGE_FS, 0, SG_RANGE(uniforms));
             
-         binds.fs_images[0] = images[sprite.name];
+         binds.fs_images[0] = images[sprite.name].image;
          sg_apply_bindings(&binds);
-       //  std::cout << "after apply \n";
          sg_draw(0, 4, 1);
        //  std::cout << "end of loop \n";
      }
