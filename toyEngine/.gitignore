@@ -1,0 +1,14 @@
+# Xmake
+/build
+/.xmake
+
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+
+# CLion
+/.idea
+
+# Visual Studio
+/.vs

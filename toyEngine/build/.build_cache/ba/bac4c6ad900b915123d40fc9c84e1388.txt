@@ -1,0 +1,7 @@
+{
+    outdata = "__cpp_Engine.cpp.cpp\
+C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\EntityManager.h(95): warning C4804: '>': unsafe use of type 'bool' in operation\
+C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\EntityManager.h(100): note: see reference to function template instantiation 'bool EntityManager::HasAll<data::Position,>(EntityID)' being compiled\
+src\\Engine.cpp(90): note: see reference to function template instantiation 'void EntityManager::ForEach<data::Sprite,data::Position>(const EntityManager::ForEachCallback &)' being compiled\
+"
+}
