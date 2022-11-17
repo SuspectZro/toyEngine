@@ -154,13 +154,15 @@
 			"Punch", 1,
 			"Straight", 2
 		);
+		//this is for lua to use these keys
 		lua.new_enum("KEYBOARD",
 			//"SPACE", KEY_SPACE,
 			"A", GLFW_KEY_A,
 			"S", GLFW_KEY_S,
 			"D", GLFW_KEY_D,
 			"W", GLFW_KEY_W,
-			"E", GLFW_KEY_E
+			"E", GLFW_KEY_E,
+			"R", GLFW_KEY_R
 
 		);
 		lua.set_function("Play", [&](string s) {
@@ -257,6 +259,7 @@
 			return engine->ecs->Get<Box>(id);
 
 			});
+
 		//LoadScript("player1", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\newScript.lua");
 		//LoadScript("test1", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\aiRbow.lua");
 		LoadScript("player1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\newScript.lua");
@@ -312,6 +315,14 @@
 				r = glfwGetKey(window, GLFW_KEY_E);
 				if (r) {
 					std::cout << "E" << "\n";
+					//engine->PlaySound("complete");
+
+				}
+				break;
+			case R:
+				r = glfwGetKey(window, GLFW_KEY_R);
+				if (r) {
+					std::cout << "R" << "\n";
 					//engine->PlaySound("complete");
 
 				}

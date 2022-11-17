@@ -132,7 +132,7 @@ void GraphicsManager::Startup() {
     std::pair<string, string> list[10] = { {"rbow","assets/rbow.png"},
                                           {"player1","assets/player1/idle.png"},
                                           {"p1p","assets/player1/punch.png"},
-                                          {"p1s","assets/player1/striaght.png"},
+                                          {"p1s","assets/player1/straight.png"},
                                           {"rJ","assets/player1/jump.png"},
                                           {"rCrouch","assets/player1/crouch.png"},
                                           {"rCrouchP","assets/player1/crouchPunch.png"},
