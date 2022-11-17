@@ -126,8 +126,9 @@
 		window = e->graphics->getWindowPointer();
 	}
 	void ScriptManager::StartUp(Engine* e) {
-		LoadScript("Master", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\MasterScript.lua");
-		
+		//LoadScript("Master", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\MasterScript.lua");
+		LoadScript("Master", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\MasterScript.lua");
+	
 
 		engine = e;
 		lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::table);
@@ -256,8 +257,10 @@
 			return engine->ecs->Get<Box>(id);
 
 			});
-		LoadScript("player1", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\newScript.lua");
-		LoadScript("test1", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\aiRbow.lua");
+		//LoadScript("player1", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\newScript.lua");
+		//LoadScript("test1", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\aiRbow.lua");
+		LoadScript("player1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\newScript.lua");
+		LoadScript("test1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\aiRbow.lua");
 		//scripts["test1"](10, 5,1);
 		scripts["Master"]();
 
