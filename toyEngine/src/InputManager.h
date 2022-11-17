@@ -14,6 +14,7 @@ enum keyboard {
 	D,
 	W,
 	Q,
+	E,
 	undefined,
 };
 //namespace toyEngine { };

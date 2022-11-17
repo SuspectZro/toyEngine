@@ -37,7 +37,12 @@ void GraphicsManager::Startup() {
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1);
     //delete p;
-    
+    // changing window icon
+    const std::string path = "assets/icon.png";
+    GLFWimage images[1];
+    images[0].pixels = stbi_load(path.c_str(), &images[0].width, &images[0].height, 0, 4); //rgba channels
+    glfwSetWindowIcon(window, 1, images);
+    stbi_image_free(images[0].pixels);
     sg_setup(sg_desc{});
     
     // A vertex buffer containing a textured square.
@@ -124,10 +129,17 @@ void GraphicsManager::Startup() {
 
     binds = bindings;
     //loading all images
-    std::pair<string, string> list[4] = { {"rbow","C:\\Users\\ruiz_\\toyEngine\\toyEngine\\assets\\rbow.png"},
-        {"player1","C:\\Users\\ruiz_\\toyEngine\\toyEngine\\assets\\player1\\idle.png"},
-    {"p1p","C:\\Users\\ruiz_\\toyEngine\\toyEngine\\assets\\player1\\punch.png"},
-    {"p1s","C:\\Users\\ruiz_\\toyEngine\\toyEngine\\assets\\player1\\striaght.png"} };
+    std::pair<string, string> list[10] = { {"rbow","assets/rbow.png"},
+                                          {"player1","assets/player1/idle.png"},
+                                          {"p1p","assets/player1/punch.png"},
+                                          {"p1s","assets/player1/striaght.png"},
+                                          {"rJ","assets/player1/jump.png"},
+                                          {"rCrouch","assets/player1/crouch.png"},
+                                          {"rCrouchP","assets/player1/crouchPunch.png"},
+                                          {"rDash","assets/player1/dashF.png"},
+                                          {"rWalk","assets/player1/walk1.png"},
+                                          {"rSlide","assets/player1/slideF.png"},
+    };
     
     for (auto item : list) {
         loadImage(item.first, item.second);

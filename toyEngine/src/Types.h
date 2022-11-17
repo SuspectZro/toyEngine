@@ -15,6 +15,8 @@ namespace data {
 	typedef glm::vec2 vec2;
 	typedef glm::vec3 vec3;
 	typedef glm::vec4 vec4;
+	//hit boxes
+	
 	//typedef std::vector ;
 	//struct Position { real x, y; }; // or: 
 	struct Position : public vec2 {};
@@ -27,4 +29,15 @@ namespace data {
 	struct Script { string name; };
 	struct Flag { real flag; };
 	struct State { string name; int counter; };
+	//box struct
+	struct Box {
+	
+		Position p;
+		real angle;
+		vec2 scale;
+		bool hit;
+
+	};
+	
+	//typedef std::vector<Box> hitBoxes;
 }

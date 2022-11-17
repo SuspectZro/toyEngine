@@ -82,6 +82,7 @@ public:
 		AddNewComponent(new SparseSet<Script>);
 		AddNewComponent(new SparseSet<Flag>);
 		AddNewComponent(new SparseSet<State>);
+		AddNewComponent(new SparseSet<Box>);
 	}
 	void ShutDown() {
 		for (auto component : components) delete component.second;

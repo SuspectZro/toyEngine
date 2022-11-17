@@ -126,7 +126,7 @@
 		window = e->graphics->getWindowPointer();
 	}
 	void ScriptManager::StartUp(Engine* e) {
-		LoadScript("Master", "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\src\\MasterScript.lua");
+		LoadScript("Master", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\MasterScript.lua");
 		
 
 		engine = e;
@@ -158,7 +158,8 @@
 			"A", GLFW_KEY_A,
 			"S", GLFW_KEY_S,
 			"D", GLFW_KEY_D,
-			"W", GLFW_KEY_W
+			"W", GLFW_KEY_W,
+			"E", GLFW_KEY_E
 
 		);
 		lua.set_function("Play", [&](string s) {
@@ -205,9 +206,20 @@
 		//trying to pass a string to trigger the animation
 		lua.new_usertype<State>("State",
 			sol::constructors<State()>(),
-			"state", &State::name
+			"state", &State::name,
+			"counter", &State::counter
+			);
+		lua.new_usertype<Box>("box",
+			sol::constructors<Box()>(),
+				"p", &Box::p,
+				"angle", &Box::angle,
+				"scale", &Box::scale,
+				"hit", &Box::hit
 			);
 
+		lua.set_function("GetState", [&](EntityID id) -> State& {
+			return engine->ecs->Get<State>(id);
+			});
 		lua.set_function("GetPosition", [&](EntityID id) -> Position& {
 			return engine->ecs->Get<Position>(id);
 
@@ -240,8 +252,12 @@
 			return engine->ecs->Get<Flag>(id);
 
 			});
-		LoadScript("player1", "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\src\\newScript.lua");
-		LoadScript("test1", "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\src\\aiRbow.lua");
+		lua.set_function("GetHit", [&](EntityID id) -> Box& {
+			return engine->ecs->Get<Box>(id);
+
+			});
+		LoadScript("player1", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\newScript.lua");
+		LoadScript("test1", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\aiRbow.lua");
 		//scripts["test1"](10, 5,1);
 		scripts["Master"]();
 
@@ -285,6 +301,14 @@
 				r = glfwGetKey(window, GLFW_KEY_W);
 				if (r) {
 					std::cout << "W" << "\n";
+					//engine->PlaySound("complete");
+
+				}
+				break;
+			case E:
+				r = glfwGetKey(window, GLFW_KEY_E);
+				if (r) {
+					std::cout << "E" << "\n";
 					//engine->PlaySound("complete");
 
 				}
