@@ -1,29 +1,4 @@
 {
-    values = {
-        [[C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\bin\HostX64\x64\cl.exe]],
-        {
-            "/EHsc",
-            "-nologo",
-            "-Ox",
-            "-fp:fast",
-            "-std:c++17",
-            "-Isrc",
-            "-DGLFW_INCLUDE_NONE",
-            "-external:W0",
-            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\g\glfw\3.3.8\d12e591897c9472fb7d3725fa5811388\include]],
-            "-external:W0",
-            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\s\spdlog\v1.10.0\6bf6da47960848619cd072b319304dad\include]],
-            "-external:W0",
-            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\s\soloud\20200207\df7d2de22c464928871173041a5f621f\include]],
-            "-external:W0",
-            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\g\glm\0.9.9+8\8335bab7c0314ab9921440de58961aac\include]],
-            "-external:W0",
-            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\s\sol2\v3.2.3\368f1d3b0b254ded985a8ca1a2b7b4c6\include]],
-            "-external:W0",
-            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\l\lua\v5.4.4\200aae53e3a8489bb9f8fd764de1b658\include\lua]],
-            "-DNDEBUG"
-        }
-    },
     depfiles_cl_json = "{\
     \"Version\": \"1.2\",\
     \"Data\": {\
@@ -466,6 +441,31 @@
         \"ImportedHeaderUnits\": []\
     }\
 }",
+    values = {
+        [[C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\bin\HostX64\x64\cl.exe]],
+        {
+            "/EHsc",
+            "-nologo",
+            "-Ox",
+            "-fp:fast",
+            "-std:c++17",
+            "-Isrc",
+            "-DGLFW_INCLUDE_NONE",
+            "-external:W0",
+            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\g\glfw\3.3.8\d12e591897c9472fb7d3725fa5811388\include]],
+            "-external:W0",
+            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\s\spdlog\v1.10.0\6bf6da47960848619cd072b319304dad\include]],
+            "-external:W0",
+            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\s\soloud\20200207\df7d2de22c464928871173041a5f621f\include]],
+            "-external:W0",
+            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\g\glm\0.9.9+8\8335bab7c0314ab9921440de58961aac\include]],
+            "-external:W0",
+            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\s\sol2\v3.2.3\368f1d3b0b254ded985a8ca1a2b7b4c6\include]],
+            "-external:W0",
+            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\l\lua\v5.4.4\200aae53e3a8489bb9f8fd764de1b658\include\lua]],
+            "-DNDEBUG"
+        }
+    },
     files = {
         [[src\ScriptManager.cpp]]
     }
