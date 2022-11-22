@@ -424,9 +424,6 @@
         \"ImportedHeaderUnits\": []\
     }\
 }",
-    files = {
-        [[src\GraphicsManager.cpp]]
-    },
     values = {
         [[C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\bin\HostX64\x64\cl.exe]],
         {
@@ -451,5 +448,8 @@
             [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\l\lua\v5.4.4\200aae53e3a8489bb9f8fd764de1b658\include\lua]],
             "-DNDEBUG"
         }
+    },
+    files = {
+        [[src\GraphicsManager.cpp]]
     }
 }

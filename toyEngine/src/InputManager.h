@@ -16,6 +16,12 @@ enum keyboard {
 	Q,
 	E,
 	R,
+	UP,
+	LEFT,
+	RIGHT,
+	DOWN,
+	RSHIFT,
+	SLASH,
 	undefined,
 };
 //namespace toyEngine { };

@@ -11,6 +11,7 @@ GetPosition(id).py = 50
 GetSprite(id).name = "rbow"
 GetSprite(id).size = 10
 GetScript(id).name = "test1"
+----Player1-------------------------
 id = GetUnusedId()
 GetPosition(id).px = -90
 GetPosition(id).py = -30
@@ -22,7 +23,18 @@ GetSprite(id).size = 50
 GetFlag(id).f = 0.0
 GetScript(id).name = "player1"
 GetState(id).state = "Idle"
-
+---Player2---------------------------
+id = GetUnusedId()
+GetPosition(id).px = 90
+GetPosition(id).py = -30
+GetVelocity(id).vx = 0.0
+GetVelocity(id).vy = 0.0
+GetGravity(id).mps = -0.08
+GetSprite(id).name = "player2"
+GetSprite(id).size = 50
+GetFlag(id).f = 0.0
+GetScript(id).name = "player2"
+GetState(id).state = "Idle"
 		--Position p;
 	---	p.x = 20;
 	--	p.y = 50;

@@ -129,7 +129,7 @@ void GraphicsManager::Startup() {
 
     binds = bindings;
     //loading all images
-    std::pair<string, string> list[10] = { {"rbow","assets/rbow.png"},
+    std::pair<string, string> list[19] = { {"rbow","assets/rbow.png"},
                                           {"player1","assets/player1/idle.png"},
                                           {"p1p","assets/player1/punch.png"},
                                           {"p1s","assets/player1/straight.png"},
@@ -139,6 +139,15 @@ void GraphicsManager::Startup() {
                                           {"rDash","assets/player1/dashF.png"},
                                           {"rWalk","assets/player1/walk1.png"},
                                           {"rSlide","assets/player1/slideF.png"},
+                                          {"player2","assets/player2/idle2.png"},
+                                          {"p2p","assets/player2/punch2.png"},
+                                          {"p2s","assets/player2/straight2.png"},
+                                          {"lJ2","assets/player2/jump2.png"},
+                                          {"lCrouch2","assets/player2/crouch2.png"},
+                                          {"lCrouchP2","assets/player2/crouchPunch2.png"},
+                                          {"lDash2","assets/player2/dashF2.png"},
+                                          {"lWalk2","assets/player2/walk12.png"},
+                                          {"lSlide2","assets/player2/slideF2.png"}
     };
     
     for (auto item : list) {

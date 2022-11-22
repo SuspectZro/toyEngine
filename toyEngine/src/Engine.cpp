@@ -149,11 +149,12 @@
 				[](float f, const glm::vec3& v1) -> glm::vec3 { return f * v1; }
 			)
 			);
-		lua.new_enum("Stance",
-			"Idle", 0,
-			"Punch", 1,
-			"Straight", 2
-		);
+		//lua.new_enum("Stance",
+		//	"Idle", 0,
+		//	"Punch", 1,
+		//	"Straight", 2
+		//);
+		
 		//this is for lua to use these keys
 		lua.new_enum("KEYBOARD",
 			//"SPACE", KEY_SPACE,
@@ -162,7 +163,13 @@
 			"D", GLFW_KEY_D,
 			"W", GLFW_KEY_W,
 			"E", GLFW_KEY_E,
-			"R", GLFW_KEY_R
+			"R", GLFW_KEY_R,
+			"UP", GLFW_KEY_UP,
+			"LEFT", GLFW_KEY_LEFT,
+			"RIGHT", GLFW_KEY_RIGHT,
+			"DOWN", GLFW_KEY_DOWN,
+			"RSHIFT", GLFW_KEY_RIGHT_SHIFT,
+			"SLASH", GLFW_KEY_SLASH
 
 		);
 		lua.set_function("Play", [&](string s) {
@@ -263,6 +270,7 @@
 		//LoadScript("player1", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\newScript.lua");
 		//LoadScript("test1", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\aiRbow.lua");
 		LoadScript("player1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\newScript.lua");
+		LoadScript("player2", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\player2.lua");
 		LoadScript("test1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\aiRbow.lua");
 		//scripts["test1"](10, 5,1);
 		scripts["Master"]();
@@ -323,6 +331,54 @@
 				r = glfwGetKey(window, GLFW_KEY_R);
 				if (r) {
 					std::cout << "R" << "\n";
+					//engine->PlaySound("complete");
+
+				}
+				break;
+			case UP:
+				r = glfwGetKey(window, GLFW_KEY_UP);
+				if (r) {
+					std::cout << "UP" << "\n";
+					//engine->PlaySound("complete");
+
+				}
+				break;
+			case LEFT:
+				r = glfwGetKey(window, GLFW_KEY_LEFT);
+				if (r) {
+					std::cout << "LEFT" << "\n";
+					//engine->PlaySound("complete");
+
+				}
+				break;
+			case RIGHT:
+				r = glfwGetKey(window, GLFW_KEY_RIGHT);
+				if (r) {
+					std::cout << "RIGHT" << "\n";
+					//engine->PlaySound("complete");
+
+				}
+				break;
+			case DOWN:
+				r = glfwGetKey(window, GLFW_KEY_DOWN);
+				if (r) {
+					std::cout << "DOWN" << "\n";
+					//engine->PlaySound("complete");
+
+				}
+				break;
+			case RSHIFT:
+				r = glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT);
+				if (r) {
+					std::cout << "RSHIFT" << "\n";
+					//engine->PlaySound("complete");
+
+				}
+				break;
+			case SLASH:
+				r = glfwGetKey(window, GLFW_KEY_SLASH);
+				if (r) {
+					std::cout << "SLASH" << "\n";
 					//engine->PlaySound("complete");
 
 				}

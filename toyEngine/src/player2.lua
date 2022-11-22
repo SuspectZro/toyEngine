@@ -1,0 +1,203 @@
+function runState(id)
+	-- body
+		state = GetState(id).state
+		--State that need a counter------------
+		if( state == "Walking" or state == "Idle" or state == "Punch" or state == "Crouching" or state == "Dash" or state == "Slide" or state == "Straight" or state == "CrouchingPunch")
+		then	
+			
+			if (state == "Walking" )
+			then
+				GetSprite(id).name = "lWalk2"
+				GetState(id).counter = GetState(id).counter - 1
+				GetFlag(id).f = GetFlag(id).f - 1
+				if(GetFlag(id).f > 0 and GetFlag(id).f < 6)
+				then
+					
+					print("combo")
+				end
+			end
+			if(state == "Dash")
+			then
+				GetSprite(id).name = "lDash2"
+				GetState(id).counter = GetState(id).counter - 1
+				GetVelocity(id).vx = -1
+			end
+			if(state == "Slide")
+			then
+				GetSprite(id).name = "lSlide2"
+				GetState(id).counter = GetState(id).counter - 1
+				--GetVelocity(id).vx = GetVelocity(id).vx + 1
+				if(GetState(id).counter == 0)
+				then
+					GetState(id).state = "Idle"
+				end
+			end
+
+			if(state == "Punch")
+			then
+				GetSprite(id).name = "p2p"
+				GetState(id).counter = GetState(id).counter - 1
+			end
+		
+			if(state == "Straight")
+			then
+				GetState(id).counter = GetState(id).counter - 1
+				if(GetState(id).counter < 30)
+				then
+					GetSprite(id).name = "p2s"
+				end
+			end
+			if(state == "Crouching")
+			then
+				GetSprite(id).name = "lCrouch2"
+				GetState(id).counter = GetState(id).counter - 1
+				if(GetState(id).counter == 0)
+				then
+					GetState(id).state = "Idle"
+				end
+
+			end
+			if(state == "CrouchingPunch")
+			then
+				GetSprite(id).name = "lCrouchP2"
+				GetState(id).counter = GetState(id).counter - 1			
+				if(GetState(id).counter < 14)
+				then
+					GetSprite(id).name = "lCrouch2"
+					if(GetState(id).counter > 2)
+					then
+						GetState(id).counter = GetState(id).counter - 1
+					end
+					if(GetState(id).counter == 2)
+					then
+						GetState(id).state = "Crouching"
+					end
+				end
+			end
+			if(GetState(id).counter < 8 and state ~= "Crouching" and state ~= "CrouchingPunch" and state ~= "Slide")
+			then
+				GetState(id).state = "Idle"
+				GetSprite(id).name = "player2"
+				if(GetState(id).counter > 0)
+				then
+				GetState(id).counter = GetState(id).counter - 1
+				end
+			end
+		end
+		-----state without counter--------------------
+		
+		if(state == "Jumping")
+		then
+			GetSprite(id).name = "lJ2"
+			if(GetPosition(id).py < -27)
+			then
+				GetState(id).state = "Idle"
+				GetState(id).counter = 1
+			end
+		end
+		
+end
+
+local id = ...
+
+runState(id)
+
+--Punch------------------------
+if(KeyIsDown(KEYBOARD.RSHIFT))
+then
+	if(GetState(id).counter == 0)
+	then
+		GetState(id).state = "Punch"
+		GetState(id).counter = 20
+	end
+end
+
+if(KeyIsDown(KEYBOARD.SLASH))
+then
+	if(GetState(id).counter == 0)
+	then
+		GetState(id).state = "Straight"
+		GetState(id).counter = 40
+	end
+end
+
+--print(GetState(id).state)
+if( GetState(id).state ~= "Jumping" and GetState(id).state ~= "Slide")
+then
+	if(GetState(id).state ~= "Dash")
+	then
+
+GetVelocity(id).vx = 0.0
+end
+--GetVelocity(id).vy = 0.0
+-----walk back and forth -----------------
+if(KeyIsDown(KEYBOARD.RIGHT)  and GetState(id).state ~= "Crouching" and GetState(id).state ~= "Punch" and GetState(id).state ~= "Dash" and GetState(id).state ~= "Straight" and GetState(id).state ~= "CrouchingPunch")
+then
+	if(GetState(id).counter == 0)
+	then
+		GetState(id).state = "Walking"
+		GetState(id).counter = 20		
+	end
+	GetVelocity(id).vx = GetVelocity(id).vx + 1
+	GetFlag(id).f = 0
+end
+---walk foward or double foward will Dash---------------------
+if(KeyIsDown(KEYBOARD.LEFT) and GetState(id).state ~= "Punch" and GetState(id).state ~= "Crouching" and GetState(id).state ~= "Straight" and GetState(id).state ~= "CrouchingPunch")
+then
+	if(GetState(id).counter == 0 and GetPosition(id).py < -26 )
+	then
+		GetState(id).state = "Walking"
+		GetState(id).counter = 20	
+		--print(GetFlag(id).f)
+	end
+	
+	GetVelocity(id).vx = GetVelocity(id).vx - 1
+	if(GetFlag(id).f > 0 and GetFlag(id).f < 6)
+	then
+		GetState(id).state = "Dash"
+		GetState(id).counter = 20
+		--GetVelocity(id).vx = GetVelocity(id).vx - 2
+	end
+	GetFlag(id).f = 8
+end
+
+--Crouching--------------------
+if(KeyIsDown(KEYBOARD.DOWN))
+then
+	if(GetState(id).state ~= "Dash" and GetState(id).state ~= "CrouchingPunch")
+	then
+		GetState(id).state = "Crouching"
+		GetState(id).counter = 2
+		
+		if(KeyIsDown(KEYBOARD.RSHIFT) and GetState(id).state == "Crouching")
+		then
+			GetState(id).counter = 26
+			GetState(id).state = "CrouchingPunch"
+		end
+	end
+	print(GetState(id).state)
+	----combo from dash foward to slide kick------------------
+	if(GetState(id).state == "Dash" and GetVelocity(id).vx ~= 0.0)
+	then
+		print("SLIDE")
+		GetState(id).state = "Slide"
+		GetState(id).counter = 30
+	end
+end
+
+--Jumping------------------------
+if(KeyIsDown(KEYBOARD.UP))
+then
+		GetState(id).state = "Jumping"
+	GetVelocity(id).vy = GetVelocity(id).vy + 1.8
+end
+
+--end
+end
+--Ground----------------
+if(GetPosition(id).py < -30)
+then
+	GetVelocity(id).vy = 0
+	GetPosition(id).py = -29.9
+end
+
