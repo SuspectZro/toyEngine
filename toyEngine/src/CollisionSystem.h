@@ -8,7 +8,7 @@ class Engine;
 
 class CollisionSystem {
 public:
-	//void checkCollision(int id,int id);
+	//void checkCollision(int id,const EntityID id);
 	//std::unordered_map< string, > boxes;
 
 

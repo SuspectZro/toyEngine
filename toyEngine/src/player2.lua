@@ -126,8 +126,8 @@ if( GetState(id).state ~= "Jumping" and GetState(id).state ~= "Slide")
 then
 	if(GetState(id).state ~= "Dash")
 	then
-
-GetVelocity(id).vx = 0.0
+	GetVelocity(id).vx = GetVelocity(id).vx * 0.75
+--GetVelocity(id).vx = 0.0
 end
 --GetVelocity(id).vy = 0.0
 -----walk back and forth -----------------
@@ -138,7 +138,7 @@ then
 		GetState(id).state = "Walking"
 		GetState(id).counter = 20		
 	end
-	GetVelocity(id).vx = GetVelocity(id).vx + 1
+	GetVelocity(id).vx = GetVelocity(id).vx + 0.25
 	GetFlag(id).f = 0
 end
 ---walk foward or double foward will Dash---------------------
@@ -151,7 +151,7 @@ then
 		--print(GetFlag(id).f)
 	end
 	
-	GetVelocity(id).vx = GetVelocity(id).vx - 1
+	GetVelocity(id).vx = GetVelocity(id).vx - 0.25
 	if(GetFlag(id).f > 0 and GetFlag(id).f < 6)
 	then
 		GetState(id).state = "Dash"

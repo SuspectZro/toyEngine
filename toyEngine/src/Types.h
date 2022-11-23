@@ -30,14 +30,14 @@ namespace data {
 	struct Flag { real flag; };
 	struct State { string name; int counter; };
 	//box struct
-	struct Box {
-	
-		Position p;
-		real angle;
-		vec2 scale;
-		bool hit;
+	struct PushBox : public vec2{};
+		//Position p;
+		//Position p.y;
+		//real angle;
+		// scale;
+		//bool hit;
 
-	};
+	//};
 	
 	//typedef std::vector<Box> hitBoxes;
 }

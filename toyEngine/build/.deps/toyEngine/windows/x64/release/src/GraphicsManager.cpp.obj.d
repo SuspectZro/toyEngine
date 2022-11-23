@@ -1,4 +1,7 @@
 {
+    files = {
+        [[src\GraphicsManager.cpp]]
+    },
     depfiles_cl_json = "{\
     \"Version\": \"1.2\",\
     \"Data\": {\
@@ -448,8 +451,5 @@
             [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\l\lua\v5.4.4\200aae53e3a8489bb9f8fd764de1b658\include\lua]],
             "-DNDEBUG"
         }
-    },
-    files = {
-        [[src\GraphicsManager.cpp]]
     }
 }

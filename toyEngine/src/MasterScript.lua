@@ -23,6 +23,8 @@ GetSprite(id).size = 50
 GetFlag(id).f = 0.0
 GetScript(id).name = "player1"
 GetState(id).state = "Idle"
+GetPushBox(id).width = 30
+GetPushBox(id).height = 30
 ---Player2---------------------------
 id = GetUnusedId()
 GetPosition(id).px = 90
@@ -35,6 +37,8 @@ GetSprite(id).size = 50
 GetFlag(id).f = 0.0
 GetScript(id).name = "player2"
 GetState(id).state = "Idle"
+GetPushBox(id).width = 30
+GetPushBox(id).height = 30
 		--Position p;
 	---	p.x = 20;
 	--	p.y = 50;

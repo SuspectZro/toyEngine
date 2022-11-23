@@ -102,6 +102,35 @@
 				ecs->Get<Velocity>(id).y += g.meters_per_second;
 				
 				});
+
+			ecs->ForEach<Position, Velocity, PushBox>([&](EntityID id1) {
+				
+				ecs->ForEach<Position, Velocity, PushBox>([&](EntityID id2) {
+					if (id2 <= id1) {
+						return;
+					}
+					//center
+					Position p1 = ecs->Get<Position>(id1);
+					Position p2 = ecs->Get<Position>(id2);
+					//scale
+					vec2 s1 = ecs->Get<PushBox>(id1);
+					vec2 s2 = ecs->Get<PushBox>(id2);
+					real px = p1.x - p2.x;
+					real py = p1.y - p2.y;
+					//check x collision
+					if (abs(px) < ((s1.x + s2.x)/2)) {
+						ecs->Get<Velocity>(id1).x -= signbit(px);
+						ecs->Get<Velocity>(id2).x += signbit(px);
+						std::cout << "collision X " << "\n";
+					}
+					//check y collision
+				//	if (abs(py) < ((s1.y + s2.y) / 2)) {
+				//		ecs->Get<Velocity>(id1).y -= signbit(py);
+				//		ecs->Get<Velocity>(id2).y += signbit(py);
+				//		std::cout << "collision Y " << "\n";
+				//	}
+					});
+				});
 			ecs->ForEach<Position, Velocity>([&](EntityID id) {
 				Velocity v = ecs->Get<Velocity>(id);
 				//Position p = ecs->Get<Position>(id);
@@ -111,7 +140,7 @@
 				//p.y += v.y;
 				ecs->Get<Position>(id).y += v.y;
 				});
-
+			
 			graphics->Draw(sprites);
 
 			//std::cout << sprites.size() << "\n";
@@ -219,12 +248,13 @@
 			"state", &State::name,
 			"counter", &State::counter
 			);
-		lua.new_usertype<Box>("box",
-			sol::constructors<Box()>(),
-				"p", &Box::p,
-				"angle", &Box::angle,
-				"scale", &Box::scale,
-				"hit", &Box::hit
+		lua.new_usertype<PushBox>("PushBox",
+			sol::constructors<PushBox()>(),
+				//"p", &PushBox::p,
+				//"angle", &PushBox::angle,
+				"width", &PushBox::x,
+				"height", &PushBox::y
+				//"hit", &PushBox::hit
 			);
 
 		lua.set_function("GetState", [&](EntityID id) -> State& {
@@ -262,8 +292,8 @@
 			return engine->ecs->Get<Flag>(id);
 
 			});
-		lua.set_function("GetHit", [&](EntityID id) -> Box& {
-			return engine->ecs->Get<Box>(id);
+		lua.set_function("GetPushBox", [&](EntityID id) -> PushBox& {
+			return engine->ecs->Get<PushBox>(id);
 
 			});
 
