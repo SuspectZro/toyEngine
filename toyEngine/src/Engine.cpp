@@ -155,11 +155,13 @@
 		window = e->graphics->getWindowPointer();
 	}
 	void ScriptManager::StartUp(Engine* e) {
-		//LoadScript("Master", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\MasterScript.lua");
-		LoadScript("Master", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\MasterScript.lua");
-	
+        if (LoadScript("Master", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\MasterScript.lua")) {}
+        else
+            LoadScript("Master", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\MasterScript.lua");
 
-		engine = e;
+
+
+        engine = e;
 		lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::table);
 		lua.script("math.randomseed(0)");
 		//lua.new_usertype<glm::vec3>("vector",
@@ -297,12 +299,20 @@
 
 			});
 
-		//LoadScript("player1", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\newScript.lua");
-		//LoadScript("test1", "C:\\Users\\Alex\\Documents\\GMU\\CS 425 Game Programming I\\toyEngine\\toyEngine\\src\\aiRbow.lua");
-		LoadScript("player1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\newScript.lua");
-		LoadScript("player2", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\player2.lua");
-		LoadScript("test1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\aiRbow.lua");
-		//scripts["test1"](10, 5,1);
+        if (LoadScript("player1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\newScript.lua")){}
+        else
+            LoadScript("player1", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\newScript.lua");
+
+        if (LoadScript("player2", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\newScript.lua")){}
+        else
+            LoadScript("player2", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\newScript.lua");
+
+        if (LoadScript("test1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\aiRbow.lua")){}
+        else
+            LoadScript("test1", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\aiRbow.lua");
+
+
+        //scripts["test1"](10, 5,1);
 		scripts["Master"]();
 
 	}
