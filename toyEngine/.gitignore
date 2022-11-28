@@ -1,6 +1,7 @@
 # Xmake
 /build
 /.xmake
+/toyEngine/build
 
 # macOS
 .DS_Store
