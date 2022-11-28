@@ -303,9 +303,9 @@
         else
             LoadScript("player1", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\player1.lua");
 
-        if (LoadScript("player2", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\player1.lua")){}
+        if (LoadScript("player2", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\player2.lua")){}
         else
-            LoadScript("player2", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\player1.lua");
+            LoadScript("player2", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\player2.lua");
 
         if (LoadScript("test1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\aiRbow.lua")){}
         else
