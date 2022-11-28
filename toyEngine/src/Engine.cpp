@@ -299,13 +299,13 @@
 
 			});
 
-        if (LoadScript("player1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\newScript.lua")){}
+        if (LoadScript("player1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\player1.lua")){}
         else
-            LoadScript("player1", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\newScript.lua");
+            LoadScript("player1", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\player1.lua");
 
-        if (LoadScript("player2", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\newScript.lua")){}
+        if (LoadScript("player2", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\player1.lua")){}
         else
-            LoadScript("player2", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\newScript.lua");
+            LoadScript("player2", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\player1.lua");
 
         if (LoadScript("test1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\aiRbow.lua")){}
         else

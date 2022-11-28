@@ -1,7 +1,7 @@
 local x = ...
 Play("complete")
 --print("executing master script")
---LoadScript("test2", "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\src\\newScript.lua")
+--LoadScript("test2", "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\src\\player1.lua")
 --LoadScript("test1", "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\src\\player1.lua")
 id = GetUnusedId()
 --print(id)
