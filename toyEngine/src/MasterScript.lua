@@ -3,6 +3,16 @@ Play("complete")
 --print("executing master script")
 --LoadScript("test2", "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\src\\player1.lua")
 --LoadScript("test1", "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\src\\player1.lua")
+
+-- load bg
+id = GetUnusedId()
+GetPosition(id).px = 0
+GetPosition(id).py = 39
+GetSprite(id).name = "bg"
+GetSprite(id).size = 140
+--GetSprite(id).width = 800
+--GetSprite(id).height = 600
+
 id = GetUnusedId()
 --print(id)
 --EntityID ID = GetUnusedID();

@@ -1,5 +1,13 @@
 #include "GraphicsManager.h"
+
+#include "sokol_gfx.h"//
+//#include "sokol_fetch.h"//
+//#include "sokol_glue.h"//
+
 #define SOKOL_IMPL
+
+//#include "sokol_gl.h"//
+
 #define SOKOL_GLCORE33
 #include "sokol_gfx.h"
 #include "glm/glm.hpp"
@@ -8,6 +16,7 @@
 #include "stb_image.h"
 
 #include "glm/gtc/matrix_transform.hpp"
+
 
 using namespace glm;
 
@@ -120,7 +129,7 @@ void GraphicsManager::Startup() {
     
     pa.colors[0].action = SG_ACTION_CLEAR;
     pa.colors[0].value = { /* red, green, blue, alpha floating point values for a color to fill the frame buffer with */
-        0.0,1.0,0.0,1.0
+        0.0,0.0,0.0,1.0
     
     
     };
@@ -129,25 +138,26 @@ void GraphicsManager::Startup() {
 
     binds = bindings;
     //loading all images
-    std::pair<string, string> list[19] = { {"rbow","assets/rbow.png"},
+    std::pair<string, string> list[] = { {"rbow","assets/rbow.png"},
                                           {"player1","assets/player1/idle.png"},
-                                          {"p1p","assets/player1/punch.png"},
-                                          {"p1s","assets/player1/straight.png"},
-                                          {"rJ","assets/player1/jump.png"},
-                                          {"rCrouch","assets/player1/crouch.png"},
-                                          {"rCrouchP","assets/player1/crouchPunch.png"},
-                                          {"rDash","assets/player1/dashF.png"},
-                                          {"rWalk","assets/player1/walk1.png"},
-                                          {"rSlide","assets/player1/slideF.png"},
-                                          {"player2","assets/player2/idle2.png"},
-                                          {"p2p","assets/player2/punch2.png"},
-                                          {"p2s","assets/player2/straight2.png"},
-                                          {"lJ2","assets/player2/jump2.png"},
-                                          {"lCrouch2","assets/player2/crouch2.png"},
-                                          {"lCrouchP2","assets/player2/crouchPunch2.png"},
-                                          {"lDash2","assets/player2/dashF2.png"},
-                                          {"lWalk2","assets/player2/walk12.png"},
-                                          {"lSlide2","assets/player2/slideF2.png"}
+                                          {"p1p","assets/Player1/punch.png"},
+                                          {"p1s","assets/Player1/straight.png"},
+                                          {"rJ","assets/Player1/jump.png"},
+                                          {"rCrouch","assets/Player1/crouch.png"},
+                                          {"rCrouchP","assets/Player1/crouchPunch.png"},
+                                          {"rDash","assets/Player1/dashF.png"},
+                                          {"rWalk","assets/Player1/walk1.png"},
+                                          {"rSlide","assets/Player1/slideF.png"},
+                                          {"player2","assets/Player2/idle2.png"},
+                                          {"p2p","assets/Player2/punch2.png"},
+                                          {"p2s","assets/Player2/straight2.png"},
+                                          {"lJ2","assets/Player2/jump2.png"},
+                                          {"lCrouch2","assets/Player2/crouch2.png"},
+                                          {"lCrouchP2","assets/Player2/crouchPunch2.png"},
+                                          {"lDash2","assets/Player2/dashF2.png"},
+                                          {"lWalk2","assets/Player2/walk12.png"},
+                                          {"lSlide2","assets/Player2/slideF2.png"},
+                                          {"bg","assets/bg/bganim.gif"},
     };
     
     for (auto item : list) {

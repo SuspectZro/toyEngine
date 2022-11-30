@@ -41,8 +41,8 @@ class GraphicsManager {
 		void Draw();
 		
 		GraphicsManager() {
-			Default.window_width = 600;
-			Default.window_height = 300;
+			Default.window_width = 800;
+			Default.window_height = 600;
 			Default.window_name = "ToyEngine";
 			Default.window_fullscreen = false;
 		};

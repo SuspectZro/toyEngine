@@ -1,37 +1,12 @@
 {
-    values = {
-        [[C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\bin\HostX64\x64\cl.exe]],
-        {
-            "/EHsc",
-            "-nologo",
-            "-Ox",
-            "-fp:fast",
-            "-std:c++17",
-            "-Isrc",
-            "-DGLFW_INCLUDE_NONE",
-            "-external:W0",
-            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\g\glfw\3.3.8\d12e591897c9472fb7d3725fa5811388\include]],
-            "-external:W0",
-            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\s\spdlog\v1.10.0\6bf6da47960848619cd072b319304dad\include]],
-            "-external:W0",
-            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\s\soloud\20200207\df7d2de22c464928871173041a5f621f\include]],
-            "-external:W0",
-            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\g\glm\0.9.9+8\8335bab7c0314ab9921440de58961aac\include]],
-            "-external:W0",
-            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\s\sol2\v3.2.3\368f1d3b0b254ded985a8ca1a2b7b4c6\include]],
-            "-external:W0",
-            [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\l\lua\v5.4.4\200aae53e3a8489bb9f8fd764de1b658\include\lua]],
-            "-DNDEBUG"
-        }
-    },
     depfiles_cl_json = "{\
     \"Version\": \"1.2\",\
     \"Data\": {\
-        \"Source\": \"c:\\\\users\\\\ruiz_\\\\toyengine\\\\github\\\\toyengine\\\\toyengine\\\\src\\\\graphicsmanager.cpp\",\
+        \"Source\": \"c:\\\\users\\\\alex\\\\clionprojects\\\\toyengine\\\\toyengine\\\\src\\\\graphicsmanager.cpp\",\
         \"ProvidedModule\": \"\",\
         \"Includes\": [\
-            \"c:\\\\users\\\\ruiz_\\\\toyengine\\\\github\\\\toyengine\\\\toyengine\\\\src\\\\graphicsmanager.h\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glfw\\\\3.3.8\\\\d12e591897c9472fb7d3725fa5811388\\\\include\\\\glfw\\\\glfw3.h\",\
+            \"c:\\\\users\\\\alex\\\\clionprojects\\\\toyengine\\\\toyengine\\\\src\\\\graphicsmanager.h\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glfw\\\\3.3.8\\\\d12e591897c9472fb7d3725fa5811388\\\\include\\\\glfw\\\\glfw3.h\",\
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\ucrt\\\\stddef.h\",\
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\ucrt\\\\corecrt.h\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\vcruntime.h\",\
@@ -39,7 +14,7 @@
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\concurrencysal.h\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\vadefs.h\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\stdint.h\",\
-            \"c:\\\\users\\\\ruiz_\\\\toyengine\\\\github\\\\toyengine\\\\toyengine\\\\src\\\\types.h\",\
+            \"c:\\\\users\\\\alex\\\\clionprojects\\\\toyengine\\\\toyengine\\\\src\\\\types.h\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\string\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\yvals_core.h\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\xkeycheck.h\",\
@@ -131,156 +106,156 @@
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\ucrt\\\\math.h\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\vcruntime_startup.h\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\xthreads.h\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\glm.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\_fixes.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\glm.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\_fixes.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\cassert\",\
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\ucrt\\\\assert.h\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\simd\\\\platform.h\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\simd\\\\platform.h\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\cassert\",\
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\ucrt\\\\assert.h\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\fwd.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\qualifier.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\vec2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_bool2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec2.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\compute_vector_relational.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_bool2_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_float2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_float2_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_double2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_double2_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_int2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_int2_sized.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\scalar_int_sized.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_uint2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_uint2_sized.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\scalar_uint_sized.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\vec3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_bool3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec3.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_bool3_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_float3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_float3_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_double3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_double3_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_int3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_int3_sized.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_uint3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_uint3_sized.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\vec4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_bool4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec4.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_bool4_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_float4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_float4_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_double4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_double4_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_int4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_int4_sized.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_uint4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_uint4_sized.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat2x2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double2x2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat2x2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat2x2.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\matrix.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat2x3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double2x3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat2x3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat2x3.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double2x3_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float2x3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float2x3_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat2x4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double2x4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat2x4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat2x4.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double2x4_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float2x4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float2x4_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat3x2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double3x2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat3x2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat3x2.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double3x2_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float3x2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float3x2_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat3x3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double3x3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat3x3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat3x3.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double3x3_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float3x3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float3x3_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat3x4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double3x4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat3x4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat3x4.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double3x4_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float3x4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float3x4_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat4x2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double4x2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat4x2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat4x2.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double4x2_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float4x2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float4x2_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat4x3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double4x3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat4x3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat4x3.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double4x3_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float4x3.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float4x3_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat4x4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double4x4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat4x4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat4x4.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double4x4_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float4x4.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float4x4_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_matrix.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\geometric.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_geometric.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\exponential.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec1.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec1.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_exponential.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\vector_relational.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_vector_relational.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\_vectorize.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\fwd.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\qualifier.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\vec2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_bool2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec2.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\compute_vector_relational.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_bool2_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_float2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_float2_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_double2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_double2_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_int2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_int2_sized.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\scalar_int_sized.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_uint2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_uint2_sized.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\scalar_uint_sized.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\vec3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_bool3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec3.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_bool3_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_float3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_float3_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_double3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_double3_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_int3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_int3_sized.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_uint3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_uint3_sized.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\vec4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_bool4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec4.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_bool4_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_float4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_float4_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_double4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_double4_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_int4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_int4_sized.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_uint4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\vector_uint4_sized.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat2x2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double2x2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat2x2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat2x2.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\matrix.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat2x3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double2x3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat2x3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat2x3.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double2x3_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float2x3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float2x3_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat2x4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double2x4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat2x4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat2x4.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double2x4_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float2x4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float2x4_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat3x2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double3x2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat3x2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat3x2.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double3x2_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float3x2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float3x2_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat3x3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double3x3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat3x3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat3x3.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double3x3_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float3x3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float3x3_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat3x4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double3x4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat3x4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat3x4.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double3x4_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float3x4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float3x4_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat4x2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double4x2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat4x2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat4x2.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double4x2_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float4x2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float4x2_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat4x3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double4x3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat4x3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat4x3.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double4x3_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float4x3.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float4x3_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\mat4x4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double4x4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat4x4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_mat4x4.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double4x4_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float4x4.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float4x4_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_matrix.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\geometric.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_geometric.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\exponential.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec1.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_vec1.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_exponential.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\vector_relational.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_vector_relational.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\_vectorize.hpp\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\cassert\",\
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\ucrt\\\\assert.h\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\common.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\_fixes.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_common.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\compute_common.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double2x2_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float2x2.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float2x2_precision.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\trigonometric.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_trigonometric.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\packing.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_packing.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_half.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_half.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\integer.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_integer.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\common.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\_fixes.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_common.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\compute_common.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_double2x2_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float2x2.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_float2x2_precision.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\trigonometric.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_trigonometric.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\packing.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_packing.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_half.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\type_half.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\integer.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\func_integer.inl\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\intrin.h\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\setjmp.h\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\immintrin.h\",\
@@ -316,22 +291,23 @@
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\__msvc_xlocinfo_types.hpp\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\clocale\",\
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\ucrt\\\\locale.h\",\
-            \"c:\\\\users\\\\ruiz_\\\\toyengine\\\\github\\\\toyengine\\\\toyengine\\\\src\\\\sokol_gfx.h\",\
+            \"c:\\\\users\\\\alex\\\\clionprojects\\\\toyengine\\\\toyengine\\\\src\\\\sokol_gfx.h\",\
             \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\stdbool.h\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\gtc\\\\matrix_transform.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_projection.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\gtc\\\\constants.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\scalar_constants.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\scalar_constants.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\gtc\\\\constants.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_projection.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_clip_space.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_clip_space.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_transform.hpp\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_transform.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\gtc\\\\matrix_transform.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\toyengine\\\\github\\\\toyengine\\\\toyengine\\\\src\\\\sokol_gfx.h\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\gtc\\\\matrix_transform.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_projection.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\gtc\\\\constants.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\scalar_constants.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\detail\\\\setup.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\scalar_constants.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\gtc\\\\constants.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_projection.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_clip_space.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_clip_space.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_transform.hpp\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_transform.inl\",\
+            \"c:\\\\users\\\\alex\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\gtc\\\\matrix_transform.inl\",\
+            \"c:\\\\users\\\\alex\\\\clionprojects\\\\toyengine\\\\toyengine\\\\src\\\\sokol_gfx.h\",\
+            \"c:\\\\users\\\\alex\\\\clionprojects\\\\toyengine\\\\toyengine\\\\src\\\\sokol_gfx.h\",\
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\ucrt\\\\assert.h\",\
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\um\\\\windows.h\",\
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\shared\\\\winapifamily.h\",\
@@ -441,7 +417,7 @@
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\um\\\\mcx.h\",\
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\um\\\\imm.h\",\
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\um\\\\ime_cmodes.h\",\
-            \"c:\\\\users\\\\ruiz_\\\\toyengine\\\\github\\\\toyengine\\\\toyengine\\\\src\\\\stb_image.h\",\
+            \"c:\\\\users\\\\alex\\\\clionprojects\\\\toyengine\\\\toyengine\\\\src\\\\stb_image.h\",\
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\ucrt\\\\math.h\",\
             \"c:\\\\program files (x86)\\\\windows kits\\\\10\\\\include\\\\10.0.19041.0\\\\ucrt\\\\assert.h\"\
         ],\
@@ -449,6 +425,31 @@
         \"ImportedHeaderUnits\": []\
     }\
 }",
+    values = {
+        [[C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\bin\HostX64\x64\cl.exe]],
+        {
+            "/EHsc",
+            "-nologo",
+            "-Ox",
+            "-fp:fast",
+            "-std:c++17",
+            "-Isrc",
+            "-DGLFW_INCLUDE_NONE",
+            "-external:W0",
+            [[-external:IC:\Users\Alex\AppData\Local\.xmake\packages\g\glfw\3.3.8\d12e591897c9472fb7d3725fa5811388\include]],
+            "-external:W0",
+            [[-external:IC:\Users\Alex\AppData\Local\.xmake\packages\s\spdlog\v1.10.0\6bf6da47960848619cd072b319304dad\include]],
+            "-external:W0",
+            [[-external:IC:\Users\Alex\AppData\Local\.xmake\packages\s\soloud\20200207\df7d2de22c464928871173041a5f621f\include]],
+            "-external:W0",
+            [[-external:IC:\Users\Alex\AppData\Local\.xmake\packages\g\glm\0.9.9+8\8335bab7c0314ab9921440de58961aac\include]],
+            "-external:W0",
+            [[-external:IC:\Users\Alex\AppData\Local\.xmake\packages\s\sol2\v3.2.3\ec2500b4f7244c37aed12be34b9162e1\include]],
+            "-external:W0",
+            [[-external:IC:\Users\Alex\AppData\Local\.xmake\packages\l\lua\v5.4.4\200aae53e3a8489bb9f8fd764de1b658\include\lua]],
+            "-DNDEBUG"
+        }
+    },
     files = {
         [[src\GraphicsManager.cpp]]
     }
