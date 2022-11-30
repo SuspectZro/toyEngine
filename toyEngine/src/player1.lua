@@ -243,6 +243,7 @@ end
 --end
 end
 --Ground----------------
+
 if(GetPosition(id).py < -30)
 then
 	GetVelocity(id).vy = 0

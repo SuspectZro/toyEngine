@@ -121,6 +121,12 @@
 					if (abs(px) < ((s1.x + s2.x)/2)) {
 						ecs->Get<Velocity>(id1).x -= signbit(px);
 						ecs->Get<Velocity>(id2).x += signbit(px);
+						if (ecs->Get<Sprite>(id2).image == "fireBall") {
+							//ecs->Get<HitBox>(id2).hit = true;
+							//ecs->Get<HitBox>(id2).hit = 1;
+							///ecs->Get<Position>(id2).x = ecs->Get<Position>(id1).x;
+							std::cout << "id2" << "\n";
+						}
 						std::cout << "collision X " << "\n";
 					}
 					//check y collision
@@ -160,10 +166,11 @@
 								//ecs->Get<Flag>(id3).flag = 0.0;
 								ecs->Get<Position>(id2).x = ecs->Get<Position>(id).x + 28;
 								ecs->Get<Position>(id2).y = ecs->Get<Position>(id).y;
+								//ecs->Get<Velocity>(id2).x = 1;
 								//ecs->Get<HitBox>(id2).from = id;
 								//ecs->Get<Sprite>(id3) = ecs->Get<Sprite>(id2);
 								//if (ecs->Get<HitBox>(id2).hit == "False") {
-								ecs->Get<Script>(id2).name = "fireBall";
+								//ecs->Get<Script>(id2).name = "fireBall";
 								//}
 							}
 						
