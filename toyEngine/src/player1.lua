@@ -51,8 +51,12 @@ function runState(id)
 			then
 				GetSprite(id).name = "rCrouch"
 				GetState(id).counter = GetState(id).counter - 1
+				GetPushBox(id).width = 0
+				GetPushBox(id).height = 15
 				if(GetState(id).counter == 0)
 				then
+					GetPushBox(id).width = 30
+					GetPushBox(id).height = 30
 					GetState(id).state = "Idle"
 				end
 
@@ -89,8 +93,12 @@ function runState(id)
 		if(state == "Jumping")
 		then
 			GetSprite(id).name = "rJ"
+			GetPushBox(id).width = 0
+			GetPushBox(id).height = 15
 			if(GetPosition(id).py < -27)
 			then
+				GetPushBox(id).width = 30
+				GetPushBox(id).height = 30
 				GetState(id).state = "Idle"
 				GetState(id).counter = 1
 			end

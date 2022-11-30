@@ -10,8 +10,6 @@ GetPosition(id).px = 0
 GetPosition(id).py = 39
 GetSprite(id).name = "bg"
 GetSprite(id).size = 140
---GetSprite(id).width = 800
---GetSprite(id).height = 600
 
 id = GetUnusedId()
 --print(id)
