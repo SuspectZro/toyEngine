@@ -138,7 +138,7 @@ void GraphicsManager::Startup() {
 
     binds = bindings;
     //loading all images
-    std::pair<string, string> list[] = { {"rbow","assets/rbow.png"},
+    std::pair<string, string> list[] = { {"rbow","assets/ghost.png"},
                                           {"player1","assets/player1/idle.png"},
                                           {"p1p","assets/Player1/punch.png"},
                                           {"p1s","assets/Player1/straight.png"},

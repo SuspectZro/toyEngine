@@ -9,6 +9,9 @@ dt = 2
 if( GetFlag(id).f == 1)
 then
 	GetPosition(id).px = GetPosition(id).px + dt
+	-- py = sin wave
+	GetPosition(id).py = 39 + 10 * math.sin(GetPosition(id).px * 0.1)
+
 	if(GetPosition(id).px > 99)
 	then
 	GetFlag(id).f = 0
@@ -19,6 +22,7 @@ end
 if(GetFlag(id).f == 0)
 then
 	GetPosition(id).px = GetPosition(id).px - dt
+	GetPosition(id).py = 39 + 10 * math.sin(GetPosition(id).px * 0.1)
 	if(GetPosition(id).px < -99)
 	then
 	GetFlag(id).f = 1

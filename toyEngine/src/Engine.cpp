@@ -162,7 +162,7 @@
 
 
         engine = e;
-		lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::table);
+		lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::table, sol::lib::string, sol::lib::os, sol::lib::io, sol::lib::package);
 		lua.script("math.randomseed(0)");
 		//lua.new_usertype<glm::vec3>("vector",
 		//	sol::constructors<glm::vec3(),glm::vec3(float,float,float)>(),"x",&glm::vec3::x, "y", &glm::vec3::y, "z", &glm::vec3::z);
