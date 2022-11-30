@@ -140,7 +140,38 @@
 				//p.y += v.y;
 				ecs->Get<Position>(id).y += v.y;
 				});
-			
+			ecs->ForEach<State>([&](EntityID id) {
+				ecs->ForEach<Sprite>([&](EntityID id2) {
+
+					if (ecs->Get<State>(id).name == "FireBall") {
+						//std::cout << "counter " << counter << "\n";
+						//EntityID id3 = ecs->GetUnusedID();
+						//ecs->Get<Sprite>(id3) = Sprite({ "fireBall",30.0 });
+						//ecs->Get<Flag>(id3).flag = 0.0;
+						//ecs->Get<Position>(id3).x = ecs->Get<Position>(id).x + 28;
+						//ecs->Get<Position>(id3).y = ecs->Get<Position>(id).y;
+
+						if (ecs->Get<Sprite>(id2).image == "fireBall" && ecs->Get<HitBox>(id2).hit == false) {
+
+							if (ecs->Get<State>(id).counter < 20) {
+								//EntityID id3 = ecs->GetUnusedID();
+							//	ecs->Get<Sprite>(id3) = Sprite({ "fireBall",30.0 });
+								//EntityID ID = id;
+								//ecs->Get<Flag>(id3).flag = 0.0;
+								ecs->Get<Position>(id2).x = ecs->Get<Position>(id).x + 28;
+								ecs->Get<Position>(id2).y = ecs->Get<Position>(id).y;
+								//ecs->Get<HitBox>(id2).from = id;
+								//ecs->Get<Sprite>(id3) = ecs->Get<Sprite>(id2);
+								//if (ecs->Get<HitBox>(id2).hit == "False") {
+								ecs->Get<Script>(id2).name = "fireBall";
+								//}
+							}
+						
+						}
+					}
+
+					});
+				});
 			graphics->Draw(sprites);
 
 			//std::cout << sprites.size() << "\n";
@@ -229,7 +260,8 @@
 			);
 		lua.new_usertype<Flag>("Flag",
 			sol::constructors<Flag()>(),
-			"f", &Flag::flag
+			"f", &Flag::flag,
+			"charge", &Flag::charge
 			);
 		lua.new_usertype<Sprite>("Sprite",
 			sol::constructors<Sprite()>(),
@@ -248,7 +280,8 @@
 		lua.new_usertype<State>("State",
 			sol::constructors<State()>(),
 			"state", &State::name,
-			"counter", &State::counter
+			"counter", &State::counter,
+			"charge", &State::charge
 			);
 		lua.new_usertype<PushBox>("PushBox",
 			sol::constructors<PushBox()>(),
@@ -258,7 +291,16 @@
 				"height", &PushBox::y
 				//"hit", &PushBox::hit
 			);
-
+		lua.new_usertype<HitBox>("HitBox",
+			sol::constructors<HitBox()>(),
+			//"p", &PushBox::p,
+			//"angle", &PushBox::angle,
+			//"width", &HitBox::x,
+			//"height", &HitBox::y,
+			"hit", &HitBox::hit
+			//"from", &HitBox::from
+			//"hit", &PushBox::hit
+			);
 		lua.set_function("GetState", [&](EntityID id) -> State& {
 			return engine->ecs->Get<State>(id);
 			});
@@ -298,7 +340,10 @@
 			return engine->ecs->Get<PushBox>(id);
 
 			});
+		lua.set_function("GetHitBox", [&](EntityID id) -> HitBox& {
+			return engine->ecs->Get<HitBox>(id);
 
+			});
         if (LoadScript("player1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\player1.lua")){}
         else
             LoadScript("player1", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\player1.lua");
@@ -310,6 +355,9 @@
         if (LoadScript("test1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\aiRbow.lua")){}
         else
             LoadScript("test1", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\aiRbow.lua");
+		if (LoadScript("fireBall", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\fireBall.lua")) {}
+		else
+			LoadScript("fireBall", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\fireBall.lua");
 
 
         //scripts["test1"](10, 5,1);

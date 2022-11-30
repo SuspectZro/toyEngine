@@ -83,6 +83,7 @@ public:
 		AddNewComponent(new SparseSet<Flag>);
 		AddNewComponent(new SparseSet<State>);
 		AddNewComponent(new SparseSet<PushBox>);
+		AddNewComponent(new SparseSet<HitBox>);
 	}
 	void ShutDown() {
 		for (auto component : components) delete component.second;

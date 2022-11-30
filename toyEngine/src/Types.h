@@ -27,10 +27,11 @@ namespace data {
 	struct Sprite { string image; real size; };
 	struct Health { real percent; };
 	struct Script { string name; };
-	struct Flag { real flag; };
-	struct State { string name; int counter; };
+	struct Flag { real flag; real charge;};
+	struct State { string name; int counter; bool charge; };
 	//box struct
 	struct PushBox : public vec2{};
+	struct HitBox { bool hit; };
 		//Position p;
 		//Position p.y;
 		//real angle;

@@ -2,7 +2,7 @@ function runState(id)
 	-- body
 		state = GetState(id).state
 		--State that need a counter------------
-		if( state == "Walking" or state == "Idle" or state == "Punch" or state == "Crouching" or state == "Dash" or state == "Slide" or state == "Straight" or state == "CrouchingPunch")
+		if( state == "Walking" or state == "Idle" or state == "Punch" or state == "Crouching" or state == "Dash" or state == "Slide" or state == "Straight" or state == "CrouchingPunch" or state == "Crouching" or state == "Dash" or state == "Slide" or state == "Straight" or state == "CrouchingPunch" or state == "FireBall")
 		then	
 			
 			if (state == "Walking" )
@@ -32,7 +32,25 @@ function runState(id)
 					GetState(id).state = "Idle"
 				end
 			end
-
+			if(state == "FireBall")
+			then
+			GetState(id).counter = GetState(id).counter - 1
+				if(GetState(id).counter > 19)
+				then
+					GetSprite(id).name = "fireBall1"
+				end	
+				if(GetState(id).counter < 20)
+				then
+					GetSprite(id).name = "fireBall2"
+						--GetState(id).state = "Idle"
+				end
+				if(GetState(id).counter == 0)
+				then
+					GetState(id).state = "Idle"
+					GetState(id).charge = false
+					GetFlag(id).charge = 0
+				end
+			end
 			if(state == "Punch")
 			then
 				GetSprite(id).name = "p1p"
@@ -111,12 +129,18 @@ local id = ...
 runState(id)
 
 --Punch------------------------
-if(KeyIsDown(KEYBOARD.E))
+if(KeyIsDown(KEYBOARD.E) and GetState(id).state ~= "FireBall")
 then
-	if(GetState(id).counter == 0)
+	if(GetState(id).counter == 0 and GetState(id).charge == false)
 	then
 		GetState(id).state = "Punch"
 		GetState(id).counter = 20
+	end
+	if(GetState(id).charge == true and GetState(id).state ~= "Jumping")
+	then
+		print("FireBall")
+		GetState(id).state = "FireBall"
+		GetState(id).counter = 40
 	end
 end
 
@@ -128,7 +152,22 @@ then
 		GetState(id).counter = 40
 	end
 end
-
+--------charge move for FireBall---------
+if(KeyIsDown(KEYBOARD.A) and GetState(id).state ~= "FireBall")
+then
+	GetFlag(id).charge = GetFlag(id).charge + 1
+	if(GetFlag(id).charge > 60)
+	then
+		GetState(id).charge = true
+		--GetState(id).counter = 20
+	end
+--else
+	--GetFlag(id).charge = 0
+	--GetState(id).charge = false
+else
+	GetFlag(id).charge = 0
+	GetState(id).charge = false
+end
 --print(GetState(id).state)
 if( GetState(id).state ~= "Jumping" and GetState(id).state ~= "Slide")
 then
@@ -139,7 +178,7 @@ GetVelocity(id).vx = GetVelocity(id).vx * 0.75
 end
 --GetVelocity(id).vy = 0.0
 -----walk back and forth -----------------
-if(KeyIsDown(KEYBOARD.A)  and GetState(id).state ~= "Crouching" and GetState(id).state ~= "Punch" and GetState(id).state ~= "Dash" and GetState(id).state ~= "Straight" and GetState(id).state ~= "CrouchingPunch")
+if(KeyIsDown(KEYBOARD.A)  and GetState(id).state ~= "Crouching" and GetState(id).state ~= "Punch" and GetState(id).state ~= "Dash" and GetState(id).state ~= "Straight" and GetState(id).state ~= "CrouchingPunch" and GetState(id).state ~= "FireBall")
 then
 	if(GetState(id).counter == 0)
 	then
@@ -150,7 +189,7 @@ then
 	GetFlag(id).f = 0
 end
 ---walk foward or double foward will Dash---------------------
-if(KeyIsDown(KEYBOARD.D) and GetState(id).state ~= "Punch" and GetState(id).state ~= "Crouching" and GetState(id).state ~= "Straight" and GetState(id).state ~= "CrouchingPunch")
+if(KeyIsDown(KEYBOARD.D) and GetState(id).state ~= "Punch" and GetState(id).state ~= "Crouching" and GetState(id).state ~= "Straight" and GetState(id).state ~= "CrouchingPunch" and GetState(id).state ~= "FireBall")
 then
 	if(GetState(id).counter == 0 and GetPosition(id).py < -26 )
 	then
@@ -167,10 +206,11 @@ then
 		--GetVelocity(id).vx = GetVelocity(id).vx - 2
 	end
 	GetFlag(id).f = 8
+	GetFlag(id).charge = 0
 end
 
 --Crouching--------------------
-if(KeyIsDown(KEYBOARD.S))
+if(KeyIsDown(KEYBOARD.S) and GetState(id).state ~= "FireBall")
 then
 	if(GetState(id).state ~= "Dash" and GetState(id).state ~= "CrouchingPunch")
 	then
@@ -183,7 +223,7 @@ then
 			GetState(id).state = "CrouchingPunch"
 		end
 	end
-	print(GetState(id).state)
+	--print(GetState(id).state)
 	----combo from dash foward to slide kick------------------
 	if(GetState(id).state == "Dash" and GetVelocity(id).vx ~= 0.0)
 	then

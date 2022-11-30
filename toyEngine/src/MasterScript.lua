@@ -47,6 +47,17 @@ GetScript(id).name = "player2"
 GetState(id).state = "Idle"
 GetPushBox(id).width = 30
 GetPushBox(id).height = 30
+---FireBall----------
+id = GetUnusedId()
+GetVelocity(id).vx = 0.0
+GetVelocity(id).vy = 0.0
+GetSprite(id).name = "fireBall"
+GetSprite(id).size = 50
+GetFlag(id).f = 0.0
+GetHitBox(id).hit = false 
+--GetScript(id).name = "fireBall"
+GetPushBox(id).width = 30
+GetPushBox(id).height = 30
 		--Position p;
 	---	p.x = 20;
 	--	p.y = 50;
