@@ -179,23 +179,58 @@
 
 					});
 				});
+			//AI-------------------------------------------------
 			ecs->ForEach<Script>([&](EntityID id) {
 				ecs->ForEach<Script>([&](EntityID id2) {
 					if (ecs->Get<Script>(id).name == "player1") {
-						std::cout << "1\n";
+						//std::cout << "1\n";
 						if (ecs->Get<Script>(id2).name == "ai1") {
-							std::cout << "2\n";
+							//std::cout << "2\n";
+							Position p1 = ecs->Get<Position>(id);
+							Position p2 = ecs->Get<Position>(id2);
+							
+							real px = p1.x - p2.x;
+							
 							if (ecs->Get<State>(id).name == "Punch") {
-								std::cout << "3\n";
+								//std::cout << "3\n";
 								ecs->Get<State>(id2).name = "Crouching";
+							
 							}
-							else{
+							else if ((ecs->Get<State>(id).name == "FireBall" && ecs->Get<State>(id).counter > 19) && abs(px) < 151) {
+								//std::cout << "3\n";
+								ecs->Get<State>(id2).name = "Dash";
+								//if (ecs->Get<State>(id2).counter == 0) {
+								//	ecs->Get<Velocity>(id2).x = -3;
+								//	ecs->Get<State>(id2).counter = 20;
+								//}
+							}
+							else if ((ecs->Get<State>(id2).name == "Dash" || ecs->Get<State>(id2).name == "Slide") && ecs->Get<State>(id2).counter > 0 && abs(px) < 151)  {
+								//std::cout << "3\n";
+								ecs->Get<State>(id2).name = "Slide";
+								//if (ecs->Get<State>(id2).counter == 0) {
+									//ecs->Get<Velocity>(id2).x = -3;
+									ecs->Get<State>(id2).counter = ecs->Get<State>(id2).counter;
+								//}
+								//std::cout << ecs->Get<State>(id2).counter << " : count\n";
+							}
+							else if (ecs->Get<State>(id).name == "FireBall" && (ecs->Get<State>(id).counter < 20 || ecs->Get<State>(id2).counter > 0) &&  abs(px) > 150) {
+								//std::cout << "3\n";
+								ecs->Get<Velocity>(id2).y = 3;
+								//ecs->Get<State>(id2).name = "Jumping";
+								
+								//if (ecs->Get<State>(id2).counter == 0) {
+									//ecs->Get<Velocity>(id2).x = -3;
+								//ecs->Get<State>(id2).counter = ecs->Get<State>(id2).counter;
+								//}
+								//std::cout << ecs->Get<State>(id2).counter << " : count\n";
+							}
+							else {//if(ecs->Get<State>(id).counter == 0)
 								ecs->Get<State>(id2).name = "Idle";
 							}
 						}
 					}
-					});
 				});
+			});
 
 			graphics->Draw(sprites);
 

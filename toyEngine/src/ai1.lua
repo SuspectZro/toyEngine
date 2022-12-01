@@ -26,7 +26,9 @@ function runState(id)
 			then
 				GetSprite(id).name = "lSlide2"
 				GetState(id).counter = GetState(id).counter - 1
-				--GetVelocity(id).vx = GetVelocity(id).vx + 1
+				--GetVelocity(id).vx = GetVelocity(id).vx - 0.25
+				print(GetState(id).counter)
+				GetVelocity(id).vx = -2
 				if(GetState(id).counter == 0)
 				then
 					GetState(id).state = "Idle"
@@ -81,6 +83,7 @@ function runState(id)
 			if(GetState(id).counter < 8 and state ~= "Crouching" and state ~= "CrouchingPunch" and state ~= "Slide")
 			then
 				GetState(id).state = "Idle"
+				GetVelocity(id).vx = 0.0
 				GetSprite(id).name = "player2"
 				if(GetState(id).counter > 0)
 				then
@@ -106,13 +109,46 @@ function runState(id)
 		
 end
 local id = ...
-runState(id)
+
 if(KeyIsDown(KEYBOARD.P))
 then
   GetScript(id).name = "player2"
 end
---GetState(id).state = "Idle"
 
+if( GetState(id).state ~= "Jumping" and GetState(id).state ~= "Slide")
+then
+	if(GetState(id).state ~= "Dash")
+	then
+	GetVelocity(id).vx = GetVelocity(id).vx * 0.75
+--GetVelocity(id).vx = 0.0
+end
+
+if(GetState(id).state == "Dash")
+then
+
+	GetState(id).counter = 50
+end
+if(GetState(id).state == "Slide" and GetState(id).counter == 0)
+then
+	GetState(id).counter = 30
+end
+if(GetState(id).state == "Crouching" and GetState(id).counter == 0)
+then
+	GetState(id).counter = 2
+end
+------jumping
+if(GetPosition(id).py > -27)
+then
+GetState(id).state = "Jumping"
+end
+--if(GetState(id).state == "Jumping")
+--then
+--	GetVelocity(id).vy = GetVelocity(id).vy + 1.8
+	--GetVelocity(id).vy = 1.8
+--end
+end
+
+--------------------------------------GROUND
 if(GetPosition(id).py < -30)
 then
 	GetVelocity(id).vy = 0
@@ -120,3 +156,4 @@ then
 end
 --GetState(id).state = "Idel"
 
+runState(id)
