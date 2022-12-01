@@ -43,7 +43,14 @@ GetGravity(id).mps = -0.08
 GetSprite(id).name = "player2"
 GetSprite(id).size = 50
 GetFlag(id).f = 0.0
+--if(KeyIsDown(KEYBOARD.I))
+--then
+	--GetScript(id).name = "ai1"
+--elseif(KeyIsDown(KEYBOARD.P))
+	--GetScript(id).name = "player2"
+--else
 GetScript(id).name = "player2"
+--end
 GetState(id).state = "Idle"
 GetPushBox(id).width = 30
 GetPushBox(id).height = 30

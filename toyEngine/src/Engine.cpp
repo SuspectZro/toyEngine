@@ -179,6 +179,24 @@
 
 					});
 				});
+			ecs->ForEach<Script>([&](EntityID id) {
+				ecs->ForEach<Script>([&](EntityID id2) {
+					if (ecs->Get<Script>(id).name == "player1") {
+						std::cout << "1\n";
+						if (ecs->Get<Script>(id2).name == "ai1") {
+							std::cout << "2\n";
+							if (ecs->Get<State>(id).name == "Punch") {
+								std::cout << "3\n";
+								ecs->Get<State>(id2).name = "Crouching";
+							}
+							else{
+								ecs->Get<State>(id2).name = "Idle";
+							}
+						}
+					}
+					});
+				});
+
 			graphics->Draw(sprites);
 
 			//std::cout << sprites.size() << "\n";
@@ -233,6 +251,8 @@
 			"W", GLFW_KEY_W,
 			"E", GLFW_KEY_E,
 			"R", GLFW_KEY_R,
+			"I", GLFW_KEY_I,
+			"P", GLFW_KEY_P,
 			"UP", GLFW_KEY_UP,
 			"LEFT", GLFW_KEY_LEFT,
 			"RIGHT", GLFW_KEY_RIGHT,
@@ -365,6 +385,9 @@
 		if (LoadScript("fireBall", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\fireBall.lua")) {}
 		else
 			LoadScript("fireBall", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\fireBall.lua");
+		if (LoadScript("ai1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\ai1.lua")) {}
+		else
+			LoadScript("ai1", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\ai1.lua");
 
 
         //scripts["test1"](10, 5,1);
@@ -386,6 +409,24 @@
 				//std::cout << "Egnine " << r << "\n";
 				if (r) {
 					std::cout << "A" << "\n";
+
+
+				}
+				break;
+			case I:
+				r = glfwGetKey(window, GLFW_KEY_I);
+				//std::cout << "Egnine " << r << "\n";
+				if (r) {
+					std::cout << "I" << "\n";
+
+
+				}
+				break;
+			case P:
+				r = glfwGetKey(window, GLFW_KEY_P);
+				//std::cout << "Egnine " << r << "\n";
+				if (r) {
+					std::cout << "P" << "\n";
 
 
 				}

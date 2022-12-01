@@ -16,6 +16,8 @@ enum keyboard {
 	Q,
 	E,
 	R,
+	I,
+	P,
 	UP,
 	LEFT,
 	RIGHT,

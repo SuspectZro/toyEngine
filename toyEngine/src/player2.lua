@@ -110,6 +110,11 @@ local id = ...
 
 runState(id)
 
+if(KeyIsDown(KEYBOARD.I))
+then
+  GetScript(id).name = "ai1"
+end
+
 --Punch------------------------
 if(KeyIsDown(KEYBOARD.RSHIFT))
 then
