@@ -213,4 +213,3 @@ then
 	GetVelocity(id).vy = 0
 	GetPosition(id).py = -29.9
 end
-

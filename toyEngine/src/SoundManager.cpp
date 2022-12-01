@@ -5,7 +5,7 @@
 
 void SoundManager::Startup() {
 	soloud.init();
-string path = "C:\\Users\\ruiz_\\toyEngine\\toyEngine\\assets\\complete.wav";
+string path = "assets/audio/goStraight.mp3";
 std::cout << path;
 string complete = "complete";
 LoadSound(complete, path);

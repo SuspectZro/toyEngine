@@ -161,8 +161,17 @@ void GraphicsManager::Startup() {
                                           {"lWalk2","assets/Player2/walk12.png"},
                                           {"lSlide2","assets/Player2/slideF2.png"},
                                           {"bg","assets/bg/bganim.gif"},
+                                         {"m_crouch2",      "assets/Player2/m_crouch2.png"},
+                                         {"m_crouchPunch2", "assets/Player2/m_crouchPunch2.png"},
+                                         {"m_dashF2",       "assets/Player2/m_dashF2.png"},
+                                         {"m_idle2",        "assets/Player2/m_idle2.png"},
+                                         {"m_jump2",        "assets/Player2/m_jump2.png"},
+                                         {"m_punch2",       "assets/Player2/m_punch2.png"},
+                                         {"m_slideF2",      "assets/Player2/m_slideF2.png"},
+                                         {"m_straight2",    "assets/Player2/m_straight2.png"},
+                                         {"m_walk12",       "assets/Player2/m_walk12.png"},
     };
-    
+
     for (auto item : list) {
         loadImage(item.first, item.second);
     }
