@@ -1,5 +1,6 @@
 {
     files = {
+        [[build\.objs\toyEngine\windows\x64\release\src\CollisionSystem.cpp.obj]],
         [[build\.objs\toyEngine\windows\x64\release\src\Engine.cpp.obj]],
         [[build\.objs\toyEngine\windows\x64\release\src\GraphicsManager.cpp.obj]],
         [[build\.objs\toyEngine\windows\x64\release\src\InputManager.cpp.obj]],

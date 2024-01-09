@@ -4,6 +4,9 @@
 #include "SoundManager.h"
 #include "EntityManager.h"
 #include "ScriptManager.h"
+#include "CollisionSystem.h"
+#include <iostream>
+#include <filesystem>
 //#include "Types.h"
 
 //using namespace data;
@@ -25,6 +28,7 @@ public:
 	InputManager* input;
 	EntityManager* ecs;
 	ScriptManager* script;
+	
 	void Startup();
 	void Shutdown();
 	void RunGameLoop(UpdateCallback ucb);

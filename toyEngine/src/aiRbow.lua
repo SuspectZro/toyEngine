@@ -1,6 +1,6 @@
 local id = ...
 
-dt = 2
+dt = 1
 --if (flag == 1)
 --then
 --print(KeyIsDown(KEYBOARD.A))
@@ -56,4 +56,3 @@ end
 --	end
 --	GetPosition(id).px = GetPosition(id).px - dt
 --end
-

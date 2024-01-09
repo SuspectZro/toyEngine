@@ -75,14 +75,16 @@ public:
 	//expose 
 	void StartUp() {
 		AddNewComponent(new SparseSet<Position>);
-		AddNewComponent(new SparseSet<Velocity>);
+		AddNewComponent(new SparseSet<Physics>);
 		AddNewComponent(new SparseSet<Health>);
-		AddNewComponent(new SparseSet<Gravity>);
 		AddNewComponent(new SparseSet<Sprite>);
 		AddNewComponent(new SparseSet<Script>);
 		AddNewComponent(new SparseSet<Flag>);
+		AddNewComponent(new SparseSet<isFlipped>);
 		AddNewComponent(new SparseSet<State>);
-		AddNewComponent(new SparseSet<PushBox>);
+		AddNewComponent(new SparseSet<Shapes>);
+		AddNewComponent(new SparseSet<Collision>);
+		//AddNewComponent(new SparseSet<PushBox>);
 		AddNewComponent(new SparseSet<HitBox>);
 	}
 	void ShutDown() {

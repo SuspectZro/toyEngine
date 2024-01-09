@@ -1,7 +1,4 @@
 {
-    files = {
-        [[src\ScriptManager.cpp]]
-    },
     values = {
         [[C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\bin\HostX64\x64\cl.exe]],
         {
@@ -26,6 +23,9 @@
             [[-external:IC:\Users\ruiz_\AppData\Local\.xmake\packages\l\lua\v5.4.4\200aae53e3a8489bb9f8fd764de1b658\include\lua]],
             "-DNDEBUG"
         }
+    },
+    files = {
+        [[src\ScriptManager.cpp]]
     },
     depfiles_cl_json = "{\
     \"Version\": \"1.2\",\
@@ -463,7 +463,10 @@
             \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_clip_space.inl\",\
             \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_transform.hpp\",\
             \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\ext\\\\matrix_transform.inl\",\
-            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\gtc\\\\matrix_transform.inl\"\
+            \"c:\\\\users\\\\ruiz_\\\\appdata\\\\local\\\\.xmake\\\\packages\\\\g\\\\glm\\\\0.9.9+8\\\\8335bab7c0314ab9921440de58961aac\\\\include\\\\glm\\\\gtc\\\\matrix_transform.inl\",\
+            \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\filesystem\",\
+            \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\iomanip\",\
+            \"c:\\\\program files\\\\microsoft visual studio\\\\2022\\\\community\\\\vc\\\\tools\\\\msvc\\\\14.33.31629\\\\include\\\\xfilesystem_abi.h\"\
         ],\
         \"ImportedModules\": [],\
         \"ImportedHeaderUnits\": []\

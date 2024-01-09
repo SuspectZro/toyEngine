@@ -6,6 +6,7 @@
 #include<thread>
 #include<cmath>
 #include "glm/glm.hpp"
+#include <algorithm>
 
 namespace data {
 	typedef double real;
@@ -20,25 +21,18 @@ namespace data {
 	//typedef std::vector ;
 	//struct Position { real x, y; }; // or: 
 	struct Position : public vec2 {};
-
-	//struct Velocity { real x, y; }; // or: 
-	struct Velocity : public vec2 {};
-	struct Gravity { real meters_per_second; };
 	struct Sprite { string image; real size; };
 	struct Health { real percent; };
 	struct Script { string name; };
 	struct Flag { real flag; real charge;};
+	struct isFlipped { bool isFlipped; };
 	struct State { string name; int counter; bool charge; };
+	struct Physics : public vec2 { real gravity; real friction; real maxGravity; };
+	struct Shapes { vec3 scale; vec3 color; float alpha; };
+	struct Collision { real width; real height; bool isStatic; };
 	//box struct
-	struct PushBox : public vec2{};
+	//struct PushBox: public vec4{ real x; real y; real width; real height; };
+	//struct PushBox { real x; real y; real width; real height; vec4 color; };
 	struct HitBox { bool hit; };
-		//Position p;
-		//Position p.y;
-		//real angle;
-		// scale;
-		//bool hit;
-
-	//};
 	
-	//typedef std::vector<Box> hitBoxes;
 }

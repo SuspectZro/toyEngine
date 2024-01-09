@@ -19,17 +19,31 @@ void ScriptManager::execute( const std::string name, EntityID id) {
 	
 }
 
-bool ScriptManager::LoadScript(const std::string& name, const std::string& path) {
+bool ScriptManager::LoadScript(const std::string& relativePathToScript) {
+    // Get the directory of the executable.
+    std::string executableDir = std::filesystem::path(__argv[0]).parent_path().string();
 
-	scripts.insert({ name, lua.load_file(path) });
-	if (scripts[name].valid() ) {
-		std::cout << name << "\n";
-		return true;
-	}
-	
-	scripts.erase(name);
-std::cout << "loading script " << path << " failed\n";
-	return false;
-	
-	//return true;
+    // Move up four directories to get to the "src" directory.
+    for (int i = 0; i < 4; ++i) {
+        executableDir = std::filesystem::path(executableDir).parent_path().string();
+    }
+
+    // Construct the full path to the script based on the "src" directory.
+    std::string fullScriptPath = executableDir + "\\" + "src\\" + relativePathToScript;
+
+    scripts.insert({ relativePathToScript, lua.load_file(fullScriptPath) });
+
+    if (scripts[relativePathToScript].valid()) {
+        std::cout << relativePathToScript << " loaded successfully\n";
+        return true;
+    }
+
+    scripts.erase(relativePathToScript);
+    std::cout << "Loading script " << relativePathToScript << " failed\n";
+    return false;
 }
+
+
+
+
+

@@ -8,6 +8,8 @@
 #include "EntityManager.h"
 #include "InputManager.h"
 #include "GraphicsManager.h"
+#include <filesystem>
+
 #define graph 0
 #define ECS 0
 class Engine;
@@ -30,7 +32,7 @@ public:
 	void StartUp(Engine* e);
 #endif
 	void ShutDown();
-	bool LoadScript(const std::string& name, const std::string& path);
+	bool LoadScript(const std::string& path);
 	void execute(const std::string name, const EntityID id);
 };
 

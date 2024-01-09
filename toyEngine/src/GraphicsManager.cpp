@@ -1,6 +1,6 @@
 #include "GraphicsManager.h"
 
-#include "sokol_gfx.h"//
+#include "sokol_gfx.h"
 //#include "sokol_fetch.h"//
 //#include "sokol_glue.h"//
 
@@ -24,6 +24,7 @@ namespace {
     struct Uniforms {
         mat4 projection;
         mat4 transform;
+        vec4 shapeColor;
     };
 }
 
@@ -85,17 +86,21 @@ void GraphicsManager::Startup() {
 
     sg_shader_desc shader_desc{};
 
-    shader_desc.vs.source = R"(
+   shader_desc.vs.source = R"(
     #version 330
     uniform mat4 projection;
     uniform mat4 transform;
     layout(location=0) in vec2 position;
-    layout(location=1) in vec2 texcoords0;
-    out vec2 texcoords;
+    layout(location=1) in vec2 texcoords0; // Keep this for sprites
+    in vec4 color; //attribute for shape color
+    out vec2 texcoords; // Keep this for sprites
+    out vec4 fragColor; // Pass the color to the fragment shader
     void main() {
-        gl_Position = projection*transform*vec4( position, 0.0, 1.0 );
-        texcoords = texcoords0;
+        gl_Position = projection * transform * vec4(position, 0.0, 1.0);
+        texcoords = texcoords0; // Keep this for sprites
+        fragColor = color; // Pass the shape's color to the fragment shader
     })";
+
 
     pipeline_desc.layout.attrs[0];
     pipeline_desc.layout.attrs[1];
@@ -111,12 +116,14 @@ void GraphicsManager::Startup() {
     #version 330
     uniform sampler2D tex;
     in vec2 texcoords;
+    in vec4 fragColor; // get the color from the vertex shader
     out vec4 frag_color;
     void main() {
-        frag_color = texture( tex, texcoords );
-        // If we're not drawing back to front, discard very transparent pixels so we
-        // don't write to the depth buffer and prevent farther sprites from drawing.
-        if( frag_color.a < 0.1 ) discard;
+        if (texcoords != vec2(-1.0, -1.0)) {
+            frag_color = texture(tex, texcoords);
+        } else {
+            frag_color = fragColor; // Use the shape color directly for basic shapes
+        }
     }
 )";
     shader_desc.fs.images[0].name = "tex"; // The name should match the shader source code.
@@ -136,9 +143,10 @@ void GraphicsManager::Startup() {
     sg_bindings bindings{};
     bindings.vertex_buffers[0] = vertex_buffer;
 
-    binds = bindings;
+    spriteBinds = bindings;
     //loading all images
     std::pair<string, string> list[] = { {"rbow","assets/ghost.png"},
+                                          {"rainb","assets/rbow.png"},
                                           {"player1","assets/player1/idle.png"},
                                           {"p1p","assets/Player1/punch.png"},
                                           {"p1s","assets/Player1/straight.png"},
@@ -175,6 +183,63 @@ void GraphicsManager::Startup() {
     for (auto item : list) {
         loadImage(item.first, item.second);
     }
+    /*
+    // Define the vertices for the colored squares (without texture coordinates).
+    const struct {
+        float x, y, r, g, b, a;
+    } coloredSquareVertices[] = {
+        // Vertex 1
+        { -1.0f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f }, // Red square with full opacity
+        // Vertex 2
+        { 1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f }, // Green square with full opacity
+        // Vertex 3
+        { -1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f }, // Blue square with full opacity
+        // Vertex 4
+        { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.5f }, // White square with 50% opacity
+    };
+
+    sg_buffer_desc coloredSquareBufferDesc{};
+    coloredSquareBufferDesc.data = SG_RANGE(coloredSquareVertices);
+    colored_square_vertex_buffer = sg_make_buffer(coloredSquareBufferDesc);
+    sg_shader_desc coloredSquareShaderDesc{};
+    coloredSquareShaderDesc.vs.source = R"(
+        #version 330
+        uniform mat4 projection;
+        uniform mat4 transform;
+        layout(location=0) in vec2 position;
+        in vec4 color; // Vertex color for colored squares
+        out vec4 fragColor; // Pass the color to the fragment shader
+        void main() {
+            gl_Position = projection * transform * vec4(position, 0.0, 1.0);
+            fragColor = color;
+      })";
+
+    coloredSquareShaderDesc.fs.source = R"(
+      #version 330
+        in vec4 fragColor; // Vertex color passed from the vertex shader
+        out vec4 frag_color;
+        void main() {
+            frag_color = fragColor; // Use the vertex color directly for colored squares
+      })";
+
+    // Define other shader properties like uniforms if needed
+
+    coloredSquareShader = sg_make_shader(coloredSquareShaderDesc);
+    sg_bindings squareBindings{};
+    squareBindings.vertex_buffers[0] = colored_square_vertex_buffer;
+
+    shapeBinds = squareBindings;
+
+    
+    GraphicsManager::Shape blueSquare;
+    blueSquare.scale = vec3(5.0, 5.0, 5.0);  // Scale the square
+    blueSquare.color = vec3(0.0, 0.0, 1.0);   // Set the color to blue
+    blueSquare.alpha = 0.5;  // Set the alpha to 0.5 for semi-transparent
+    allShapes.push_back(blueSquare);          // Add the blue square to your list of shapes
+    */   
+ 
+ 
+
     //create all sprites and link them to their images
    /*
     Sprite s;
@@ -198,7 +263,56 @@ void GraphicsManager::Startup() {
     sprites.push_back(s2);
     */
 }
+/*
+void GraphicsManager::CreateColoredSquareVertexBuffer() {
+    // Define the vertices for the colored squares (without texture coordinates).
+    const struct {
+        float x, y, r, g, b, a;
+    } coloredSquareVertices[] = {
+        // Vertex 1
+        { -1.0f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f }, // Red square with full opacity
+        // Vertex 2
+        { 1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f }, // Green square with full opacity
+        // Vertex 3
+        { -1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f }, // Blue square with full opacity
+        // Vertex 4
+        { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.5f }, // White square with 50% opacity
+    };
 
+    sg_buffer_desc coloredSquareBufferDesc{};
+    coloredSquareBufferDesc.data = SG_RANGE(coloredSquareVertices);
+    colored_square_vertex_buffer = sg_make_buffer(coloredSquareBufferDesc);
+    sg_shader_desc shader_desc{};
+    shader_desc.vs.source = R"(
+        #version 330
+        uniform mat4 projection;
+        uniform mat4 transform;
+        layout(location=0) in vec2 position;
+        in vec4 color; // Vertex color for colored squares
+        out vec4 fragColor; // Pass the color to the fragment shader
+        void main() {
+            gl_Position = projection * transform * vec4(position, 0.0, 1.0);
+            fragColor = color;
+      })";
+
+      shader_desc.fs.source = R"(
+      #version 330
+        in vec4 fragColor; // Vertex color passed from the vertex shader
+        out vec4 frag_color;
+        void main() {
+            frag_color = fragColor; // Use the vertex color directly for colored squares
+      })";
+
+        // Define other shader properties like uniforms if needed
+
+        coloredSquareShader = sg_make_shader(shader_desc);
+        sg_bindings squareBindings{};
+        squareBindings.vertex_buffers[0] = colored_square_vertex_buffer;
+
+        shapeBinds = squareBindings;
+    
+}
+*/
 bool GraphicsManager::loadImage(const string& name, const string& path){
     std::cout << "loading \n";
     //std::cout << path << " \n";
@@ -265,13 +379,22 @@ void GraphicsManager::Draw() {
     
 }
 */
+/*
+glm::mat4 GraphicsManager::calculateTransformationMatrix(const Shape& shape) {
+    glm::mat4 modelMatrix = glm::mat4(1.0f); // Initialize with an identity matrix
 
-void GraphicsManager::Draw(const std::vector<Sprite>& allSprites) {
-    int height;
-    int width;
-     glfwGetFramebufferSize(window, &(width), &(height));    
-     sg_begin_default_pass(pa, width, height);
-     sg_apply_pipeline(pipe);
+    // Apply translation to the model matrix using shape.x and shape.y
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(shape.x, shape.y, 0.0f));
+
+    // Apply scaling to the model matrix
+    modelMatrix = glm::scale(modelMatrix, shape.scale);
+
+    return modelMatrix;
+}
+*/
+void GraphicsManager::Draw(const std::vector<Sprite>& allSprites, int width, int height) {
+   
+    
      Uniforms uniforms;
      // Start with an identity matrix.
      uniforms.projection = mat4{ 1 };
@@ -290,40 +413,145 @@ void GraphicsManager::Draw(const std::vector<Sprite>& allSprites) {
      }
      
      for (auto sprite : allSprites) {
-        
          real x, y, z;
          vec3 scaleI;
+         bool isFlipped;
          x = sprite.x;
          y = sprite.y;
          z = sprite.z;
          scaleI = sprite.scale;
          vec2 position(x, y);
-         
-         uniforms.transform = translate(mat4{ 1 }, vec3(position, z)) * scale(mat4{ 1 }, vec3(scaleI));
-       //spite width 
+         isFlipped = sprite.isFlipped;
+
+         // Start with translation
+         uniforms.transform = translate(mat4{ 1 }, vec3(position, z));
+
+         // Apply scaling
+         uniforms.transform = uniforms.transform * scale(mat4{ 1 }, scaleI);
+
+         // Apply flipping if needed
+         if (isFlipped) {
+             uniforms.transform = uniforms.transform * scale(mat4{ 1 }, vec3(-1.0, 1.0, 1.0));
+         }
+
+         // Adjust for sprite width
          if (sprite.width < sprite.height) {
              uniforms.transform = uniforms.transform * scale(mat4{ 1 }, vec3(real(sprite.width) / sprite.height, 1.0, 1.0));
-             //uniforms.transform = (uniforms.transform * scale) * vec3(real(width) / height, 1.0, 1.0));
          }
          else {
              uniforms.transform = uniforms.transform * scale(mat4{ 1 }, vec3(1.0, real(sprite.height) / sprite.width, 1.0));
-             //uniforms.transform = (uniforms.transform * scale) * vec3(1.0, real(height) / width, 1.0));
-
          }
+
+         // Apply uniforms and draw
          sg_apply_uniforms(SG_SHADERSTAGE_VS, 0, SG_RANGE(uniforms));
          sg_apply_uniforms(SG_SHADERSTAGE_FS, 0, SG_RANGE(uniforms));
-            
-         binds.fs_images[0] = images[sprite.name].image;
-         sg_apply_bindings(&binds);
+
+         spriteBinds.fs_images[0] = images[sprite.name].image;
+         sg_apply_bindings(&spriteBinds);
          sg_draw(0, 4, 1);
-       //  std::cout << "end of loop \n";
      }
-     //std::cout << "after the loop \n";
-     //sg_apply_bindings(&binds);
-     //sg_draw(0, 4, 1);
-     sg_end_pass();
-     sg_commit();
-     glfwSwapBuffers(window);
-     //std::cout << "end of draw \n";
+
+
+ 
+}
+void GraphicsManager::DrawShapes(const std::vector<Shape>& allShapes,int width, int height) {
+   
+    /*
+    for (const auto& shape : allShapes) {
+        Uniforms uniforms;
+        uniforms.transform = calculateTransformationMatrix(shape);
+        // Set the shape's color and any other shape-specific uniforms
+        uniforms.shapeColor = vec4(shape.color.r, shape.color.g, shape.color.b, shape.alpha);
+
+        sg_apply_uniforms(SG_SHADERSTAGE_VS, 0, SG_RANGE(uniforms));
+        sg_apply_uniforms(SG_SHADERSTAGE_FS, 0, SG_RANGE(uniforms));
+
+        // Apply the vertex and index buffers specific to this shape
+        //sg_apply_bindings(&spriteBinds);
+
+        // Render the shape
+        sg_draw(0,4, 1);
+    }
+    */
+    sg_apply_bindings(&shapeBinds);
+    sg_draw(0, 4, 1);
 
 }
+void GraphicsManager::RenderFrame(std::vector<Sprite>& allSprites, std::vector<Shape>& allShapes) {
+    int height, width;
+    glfwGetFramebufferSize(window, &width, &height);
+
+    sg_begin_default_pass(pa, width, height);
+    
+    sg_apply_pipeline(pipe);
+    //sg_apply_bindings(&spriteBinds);
+    
+    // Render your sprites using Draw function
+    Draw(allSprites, width, height);
+
+    // Render your shapes using DrawShapes function
+    //DrawShapes(allShapes, width, height);
+
+    sg_end_pass();
+    sg_commit();
+    glfwSwapBuffers(window);
+}
+
+/*
+void GraphicsManager::Draw(const std::vector<PushBox>& allPushBoxes) {
+    int height;
+    int width;
+    glfwGetFramebufferSize(window, &(width), &(height));
+    sg_begin_default_pass(pa, width, height);
+    sg_apply_pipeline(pushBoxPipeline);
+    Uniforms uniforms;
+    // Start with an identity matrix.
+    uniforms.projection = mat4{ 1 };
+    // Scale x and y by 1/100.
+    uniforms.projection[0][0] = uniforms.projection[1][1] = 1. / 100.;
+    //uniforms.projection[0][0] = uniforms.projection[1][1] = 1.0;
+    // Scale the long edge by an additional 1/(long/short) = short/long.
+
+    if (width < height) {
+        uniforms.projection[1][1] *= width;
+        uniforms.projection[1][1] /= height;
+    }
+    else {
+        uniforms.projection[0][0] *= height;
+        uniforms.projection[0][0] /= width;
+    }
+    if (!allPushBoxes.empty()) {
+        for (auto pushBox : allPushBoxes) {
+            real x = pushBox.x;
+            real y = pushBox.y;
+            real width = pushBox.width;
+            real height = pushBox.height;
+
+            vec4 color = pushBox.color;
+
+            PushBoxVertex vertices[] = {
+                {x, y, color},
+                {x + width, y, color},
+                {x, y + height, color},
+                {x + width, y + height, color}
+            };
+
+
+            // Create a buffer for the push box geometry
+            sg_buffer_desc buffer_desc{};
+            buffer_desc.data = SG_RANGE(vertices);
+            sg_buffer pushBoxBuffer = sg_make_buffer(buffer_desc);
+
+            // Set the pipeline for rendering the push box
+            sg_apply_pipeline(pushBoxPipeline); // You'll need to create a pipeline for push boxes
+
+            // Bind the push box buffer
+            sg_bindings pushBoxBindings{};
+            pushBoxBindings.vertex_buffers[0] = pushBoxBuffer;
+            sg_apply_bindings(&pushBoxBindings);
+
+            // Draw the push box
+            sg_draw(0, 4, 1);
+        }
+    }
+}*/

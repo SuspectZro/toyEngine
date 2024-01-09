@@ -44,215 +44,180 @@
 	}
 
 	void Engine::RunGameLoop(UpdateCallback ucb) {
-		float targetFps = 60;
-		intervals t(1. / targetFps);
-		int numberOfTimes = 1;
-		int counterFrame = 0;
-		//int delay = 60
-		std::chrono::steady_clock::time_point t0 = std::chrono::steady_clock::now();
+		const double targetFps = 60.0;
+		const double targetFrameDuration = 1.0 / targetFps;
+		auto lastFrameTime = std::chrono::high_resolution_clock::now();
 		bool running = true;
 		std::vector<GraphicsManager::Sprite> sprites;
+		std::vector<GraphicsManager::Shape> allShapes;
+		//std::vector<GraphicsManager::PushBox> pushBoxes;
+
+		int frameCount = 0;
+		double totalTime = 0.0;
+
 		while (running) {
-			counterFrame++;
-			//delay--;
-			if (counterFrame % int(targetFps * numberOfTimes) == 0) {
-				intervals t1 = (std::chrono::steady_clock::now()) - t0;
-				float trackFps = counterFrame / t1.count() / (targetFps * numberOfTimes);
-				std::cout << trackFps * (targetFps*numberOfTimes) << "\n";
-				t0 = std::chrono::steady_clock::now();
-				counterFrame = 0;
-				t = t * trackFps;
-				
+			// Calculate elapsed time since the last frame
+			auto currentTime = std::chrono::high_resolution_clock::now();
+			std::chrono::duration<double> frameDuration = currentTime - lastFrameTime;
+			lastFrameTime = currentTime;
+
+			// Calculate sleep time to achieve the target frame rate
+			double sleepTime = targetFrameDuration - frameDuration.count();
+			if (sleepTime > 0) {
+				std::this_thread::sleep_for(std::chrono::duration<double>(sleepTime));
 			}
 
+			// Your update and rendering code here
 			running = (input->Update() == 1);
-
 			ucb();
-			
-			
-			//std::cout << "here" << "\n";
-			
 
-			ecs->ForEach<Sprite, Position>([&](EntityID id) {
-				
+			ecs->ForEach<Sprite, Position,isFlipped>([&](EntityID id) {
 				GraphicsManager::Sprite s;
 				Position p = ecs->Get<Position>(id);
-				Sprite   sp = ecs->Get<Sprite>(id);
+				Sprite sp = ecs->Get<Sprite>(id);
+				isFlipped sf = ecs->Get<isFlipped>(id);
 				s.x = p.x;
 				s.y = p.y;
 				s.z = 0;
-				//s.width = 50;
-				//s.height = 50;
+				s.isFlipped = sf.isFlipped;
 				s.name = sp.image;
 				real scale = ecs->Get<Sprite>(id).size;
-				s.scale = vec3(scale,scale, scale);
+				s.scale = vec3(scale, scale, scale);
 				sprites.push_back(s);
 				});
+			//rendering logic such as facing each other while not preforming an action
+			// Assuming entities with IDs 3 and 4 are the ones you want to compare
+			EntityID id1 = 3;
+			EntityID id2 = 4;
+
+			// Get components for the first entity
+			Position p1 = ecs->Get<Position>(id1);
+			State playerState1 = ecs->Get<State>(id1);
+			isFlipped& flipped1 = ecs->Get<isFlipped>(id1);
+
+			// Get components for the second entity
+			Position p2 = ecs->Get<Position>(id2);
+			State playerState2 = ecs->Get<State>(id2);
+			isFlipped& flipped2 = ecs->Get<isFlipped>(id2);
+
+			// Check if the first player is on the opposite side
+			if ((p1.x > p2.x) && (playerState1.name != "Jumping" && flipped1.isFlipped == false) ) {
+				// Player 1 is on the opposite side, handle accordingly (e.g., flip)
+				flipped1.isFlipped = true;  // Adjust as per your engine's conventions
+				//std::cout << "Player " << id1 << " is flipped" << std::endl;
+			}
+			if ((p1.x < p2.x) && (playerState1.name != "Jumping" && flipped1.isFlipped == true)){
+				// Player 1 is on the same side, handle accordingly (e.g., don't flip)
+				flipped1.isFlipped = false;  // Adjust as per your engine's conventions
+				//std::cout << "Player " << id1 << " is not flipped" << std::endl;
+			}
+
+			// Check if the second player is on the opposite side
+			if (p2.x > p1.x) {
+				// Player 2 is on the opposite side, handle accordingly (e.g., flip)
+				flipped2.isFlipped = false;  // Adjust as per your engine's conventions
+				//std::cout << "Player " << id2 << " is flipped" << std::endl;
+			}
+			else {
+				// Player 2 is on the same side, handle accordingly (e.g., don't flip)
+				flipped2.isFlipped = true;  // Adjust as per your engine's conventions
+				//std::cout << "Player " << id2 << " is not flipped" << std::endl;
+			}
+
+
+
 			ecs->ForEach<Script>([&](EntityID id) {
 
 				script->execute(ecs->Get<Script>(id).name, id);
 
 				});
+			double deltaTime = frameDuration.count();
+			// Physics System
+			ecs->ForEach<Physics, Position, Collision>([&](EntityID id) {
+				Physics& physics = ecs->Get<Physics>(id);
+				Position& position = ecs->Get<Position>(id);
+				Collision& collision = ecs->Get<Collision>(id);
 
+				real previousY = position.y;
+				const double maxVelocity = 3.0; // Set your desired maximum velocity
 
-			ecs->ForEach<Gravity, Velocity>([&](EntityID id) {
+				// Inside your physics update loop
+				if (physics.x > maxVelocity) {
+					physics.x = maxVelocity;
+				}
+				else if (physics.x < -maxVelocity) {
+					physics.x = -maxVelocity;
+				}
+				// Update position based on physics
+				position.x += physics.x;
 				
-				Gravity g = ecs->Get<Gravity>(id);
+				position.y += physics.y;
 
-				ecs->Get<Velocity>(id).y += g.meters_per_second;
-				
-				});
+				// Gradually apply gravity up to maxGravity
 
-			ecs->ForEach<Position, Velocity, PushBox>([&](EntityID id1) {
-				
-				ecs->ForEach<Position, Velocity, PushBox>([&](EntityID id2) {
-					if (id2 <= id1) {
-						return;
-					}
-					//center
-					Position p1 = ecs->Get<Position>(id1);
-					Position p2 = ecs->Get<Position>(id2);
-					//scale
-					vec2 s1 = ecs->Get<PushBox>(id1);
-					vec2 s2 = ecs->Get<PushBox>(id2);
-					real px = p1.x - p2.x;
-					real py = p1.y - p2.y;
-					//check x collision
-					if (abs(px) < ((s1.x + s2.x)/2)) {
-						ecs->Get<Velocity>(id1).x -= signbit(px);
-						ecs->Get<Velocity>(id2).x += signbit(px);
-						if (ecs->Get<Sprite>(id2).image == "fireBall") {
-							//ecs->Get<HitBox>(id2).hit = true;
-							//ecs->Get<HitBox>(id2).hit = 1;
-							///ecs->Get<Position>(id2).x = ecs->Get<Position>(id1).x;
-							std::cout << "id2" << "\n";
-						}
-						std::cout << "collision X " << "\n";
-					}
-					//check y collision
-				//	if (abs(py) < ((s1.y + s2.y) / 2)) {
-				//		ecs->Get<Velocity>(id1).y -= signbit(py);
-				//		ecs->Get<Velocity>(id2).y += signbit(py);
-				//		std::cout << "collision Y " << "\n";
-				//	}
-					});
-				});
-			ecs->ForEach<Position, Velocity>([&](EntityID id) {
-				Velocity v = ecs->Get<Velocity>(id);
-				//Position p = ecs->Get<Position>(id);
+				physics.y += min(physics.gravity * deltaTime,physics.maxGravity );
 
-				ecs->Get<Position>(id).x += v.x;
-				//std::cout << "v.x: " << v.x << "\n";
-				//p.y += v.y;
-				ecs->Get<Position>(id).y += v.y;
-				});
-			ecs->ForEach<State>([&](EntityID id) {
-				ecs->ForEach<Sprite>([&](EntityID id2) {
+				// Check for collisions with other entities
+				ecs->ForEach<Collision, Position>([&](EntityID otherID) {
+					if (id != otherID) {
+						Collision& otherCollision = ecs->Get<Collision>(otherID);
+						Position& otherPosition = ecs->Get<Position>(otherID);
 
-					if (ecs->Get<State>(id).name == "FireBall") {
-						//std::cout << "counter " << counter << "\n";
-						//EntityID id3 = ecs->GetUnusedID();
-						//ecs->Get<Sprite>(id3) = Sprite({ "fireBall",30.0 });
-						//ecs->Get<Flag>(id3).flag = 0.0;
-						//ecs->Get<Position>(id3).x = ecs->Get<Position>(id).x + 28;
-						//ecs->Get<Position>(id3).y = ecs->Get<Position>(id).y;
+						CollisionResult result = CheckCollision(collision, position, otherCollision, otherPosition);
 
-						if (ecs->Get<Sprite>(id2).image == "fireBall" && ecs->Get<HitBox>(id2).hit == false) {
-
-							if (ecs->Get<State>(id).counter < 20) {
-								//EntityID id3 = ecs->GetUnusedID();
-							//	ecs->Get<Sprite>(id3) = Sprite({ "fireBall",30.0 });
-								//EntityID ID = id;
-								//ecs->Get<Flag>(id3).flag = 0.0;
-								ecs->Get<Position>(id2).x = ecs->Get<Position>(id).x + 28;
-								ecs->Get<Position>(id2).y = ecs->Get<Position>(id).y;
-								//ecs->Get<Velocity>(id2).x = 1;
-								//ecs->Get<HitBox>(id2).from = id;
-								//ecs->Get<Sprite>(id3) = ecs->Get<Sprite>(id2);
-								//if (ecs->Get<HitBox>(id2).hit == "False") {
-								//ecs->Get<Script>(id2).name = "fireBall";
-								//}
-							}
-						
-						}
-					}
-
-					});
-				});
-			//AI-------------------------------------------------
-			ecs->ForEach<Script>([&](EntityID id) {
-				ecs->ForEach<Script>([&](EntityID id2) {
-					if (ecs->Get<Script>(id).name == "player1") {
-						//std::cout << "1\n";
-						if (ecs->Get<Script>(id2).name == "ai1") {
-							//std::cout << "2\n";
-							Position p1 = ecs->Get<Position>(id);
-							Position p2 = ecs->Get<Position>(id2);
-							
-							real px = p1.x - p2.x;
-							
-							if (ecs->Get<State>(id).name == "Punch") {
-								//std::cout << "3\n";
-								ecs->Get<State>(id2).name = "Crouching";
-							
-							}
-							else if ((ecs->Get<State>(id).name == "FireBall" && ecs->Get<State>(id).counter > 19) && abs(px) < 151) {
-								//std::cout << "3\n";
-								ecs->Get<State>(id2).name = "Dash";
-								//if (ecs->Get<State>(id2).counter == 0) {
-								//	ecs->Get<Velocity>(id2).x = -3;
-								//	ecs->Get<State>(id2).counter = 20;
-								//}
-							}
-							else if ((ecs->Get<State>(id2).name == "Dash" || ecs->Get<State>(id2).name == "Slide") && ecs->Get<State>(id2).counter > 0 && abs(px) < 151)  {
-								//std::cout << "3\n";
-								ecs->Get<State>(id2).name = "Slide";
-								//if (ecs->Get<State>(id2).counter == 0) {
-									//ecs->Get<Velocity>(id2).x = -3;
-									ecs->Get<State>(id2).counter = ecs->Get<State>(id2).counter;
-								//}
-								//std::cout << ecs->Get<State>(id2).counter << " : count\n";
-							}
-							else if (ecs->Get<State>(id).name == "FireBall" && (ecs->Get<State>(id).counter < 20 || ecs->Get<State>(id2).counter > 0) &&  abs(px) > 150) {
-								//std::cout << "3\n";
-								ecs->Get<Velocity>(id2).y = 3;
-								//ecs->Get<State>(id2).name = "Jumping";
-								
-								//if (ecs->Get<State>(id2).counter == 0) {
-									//ecs->Get<Velocity>(id2).x = -3;
-								//ecs->Get<State>(id2).counter = ecs->Get<State>(id2).counter;
-								//}
-								//std::cout << ecs->Get<State>(id2).counter << " : count\n";
-							}
-							else {//if(ecs->Get<State>(id).counter == 0)
-								ecs->Get<State>(id2).name = "Idle";
+						if (result.collision) {
+							if (!collision.isStatic) {
+								physics.y = 0.0;
+								position.y = previousY + min(result.penetrationY, 0.0);
+								//physics.x *= pow(physics.friction, deltaTime);
+								//physics.x *= physics.friction / deltaTime;
 							}
 						}
+						//if (CheckCollision(collision, position, otherCollision, otherPosition)) {
+						//		physics.y = 0.0;
+						//		position.y = previousY;
+
+						//}
 					}
 				});
 			});
 
-			graphics->Draw(sprites);
 
-			//std::cout << sprites.size() << "\n";
+			
+			// Draw after populating the sprites vector.
+			graphics->RenderFrame(sprites,allShapes);
+			//graphics->Draw(sprites);
+			//graphics->DrawShapes(allShapes);
+			//graphics->Draw(pushBoxes);
+
+			// Clear after drawing.
+			
 			sprites.clear();
-			//graphics->Draw();
-			std::this_thread::sleep_for(t);
-		}
+			allShapes.clear();
+			//pushBoxes.clear();
 
+			// Update FPS counter
+			frameCount++;
+			totalTime += frameDuration.count();
+
+			if (totalTime >= 1.0) {
+				double currentFps = frameCount / totalTime;
+				std::cout << "FPS: " << currentFps << std::endl;
+				frameCount = 0;
+				totalTime = 0.0;
+			}
+		}
 	}
+
+
 	void InputManager::Startup(Engine* e) {
 		engine = e;
 		window = e->graphics->getWindowPointer();
 	}
 	void ScriptManager::StartUp(Engine* e) {
-        if (LoadScript("Master", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\MasterScript.lua")) {}
-        else
-            LoadScript("Master", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\MasterScript.lua");
+		LoadScript("MasterScript.lua");
 
-
-
-        engine = e;
+		engine = e;
 		lua.open_libraries(sol::lib::base, sol::lib::math, sol::lib::table, sol::lib::string, sol::lib::os, sol::lib::io, sol::lib::package);
 		lua.script("math.randomseed(0)");
 		//lua.new_usertype<glm::vec3>("vector",
@@ -276,7 +241,7 @@
 		//	"Punch", 1,
 		//	"Straight", 2
 		//);
-		
+
 		//this is for lua to use these keys
 		lua.new_enum("KEYBOARD",
 			//"SPACE", KEY_SPACE,
@@ -307,7 +272,7 @@
 		//	LoadScript(name, path);
 		//	});
 
-		
+
 
 
 		lua.new_usertype<Position>("Position",
@@ -315,15 +280,30 @@
 			"px", &Position::x,
 			"py", &Position::y
 			);
-		lua.new_usertype<Velocity>("Velocity",
-			sol::constructors<Velocity()>(),
-			"vx", &Velocity::x,
-			"vy", &Velocity::y
+
+		lua.new_usertype<Collision>("Collision",
+			sol::constructors<Collision()>(),
+			"width", &Collision::width,
+			"height", &Collision::height,
+			"isStatic", &Collision::isStatic
 			);
+		lua.new_usertype<Physics>("Physics",
+			sol::constructors<Position()>(),
+			"velocityX", &Physics::x,
+			"velocityY", &Physics::y,
+			"gravity", &Physics::gravity,
+			"maxGravity", &Physics::maxGravity,
+			"friction", &Physics::friction
+			);
+
 		lua.new_usertype<Flag>("Flag",
 			sol::constructors<Flag()>(),
 			"f", &Flag::flag,
 			"charge", &Flag::charge
+			);
+		lua.new_usertype<isFlipped>("isFlipped",
+			sol::constructors<isFlipped()>(),
+			"isFlipped", &isFlipped::isFlipped
 			);
 		lua.new_usertype<Sprite>("Sprite",
 			sol::constructors<Sprite()>(),
@@ -334,10 +314,7 @@
 			sol::constructors<Script()>(),
 			"name", &Script::name
 			);
-		lua.new_usertype<Gravity>("Gravity",
-			sol::constructors<Gravity()>(),
-			"mps", &Gravity::meters_per_second
-			);
+
 		//trying to pass a string to trigger the animation
 		lua.new_usertype<State>("State",
 			sol::constructors<State()>(),
@@ -345,13 +322,21 @@
 			"counter", &State::counter,
 			"charge", &State::charge
 			);
+		/*
 		lua.new_usertype<PushBox>("PushBox",
 			sol::constructors<PushBox()>(),
-				//"p", &PushBox::p,
-				//"angle", &PushBox::angle,
-				"width", &PushBox::x,
-				"height", &PushBox::y
-				//"hit", &PushBox::hit
+			
+			"pushW", &PushBox::width,
+			"pushH", &PushBox::height,
+			"pushX", &PushBox::x,
+			"pushY", &PushBox::y,
+			"color", &PushBox::color
+			);
+			*/
+		lua.new_usertype<Shapes>("Shape",
+			sol::constructors<Shapes()>(),
+			"color", &Shapes::color,
+			"scale", &Shapes::scale
 			);
 		lua.new_usertype<HitBox>("HitBox",
 			sol::constructors<HitBox()>(),
@@ -366,24 +351,27 @@
 		lua.set_function("GetState", [&](EntityID id) -> State& {
 			return engine->ecs->Get<State>(id);
 			});
+		lua.set_function("GetCollision", [&](EntityID id) -> Collision& {
+			return engine->ecs->Get<Collision>(id);
+			});
 		lua.set_function("GetPosition", [&](EntityID id) -> Position& {
 			return engine->ecs->Get<Position>(id);
 
 			});
-		lua.set_function("GetVelocity", [&](EntityID id) -> Velocity& {
-			return engine->ecs->Get<Velocity>(id);
-
+		lua.set_function("GetPhysics", [&](EntityID id) -> Physics& {
+			return engine->ecs->Get<Physics>(id);
 			});
 		lua.set_function("GetHealth", [&](EntityID id) -> Health& {
 			return engine->ecs->Get<Health>(id);
 
 			});
-		lua.set_function("GetGravity", [&](EntityID id) -> Gravity& {
-			return engine->ecs->Get<Gravity>(id);
-
-			});
+		
 		lua.set_function("GetSprite", [&](EntityID id) -> Sprite& {
 			return engine->ecs->Get<Sprite>(id);
+
+			});
+		lua.set_function("GetShape", [&](EntityID id) -> Shapes& {
+			return engine->ecs->Get<Shapes>(id);
 
 			});
 		lua.set_function("GetUnusedId", [&]() ->EntityID{
@@ -398,35 +386,28 @@
 			return engine->ecs->Get<Flag>(id);
 
 			});
-		lua.set_function("GetPushBox", [&](EntityID id) -> PushBox& {
+		lua.set_function("GetIsFlipped", [&](EntityID id) -> isFlipped& {
+			return engine->ecs->Get<isFlipped>(id);
+
+			});
+		/*lua.set_function("GetPushBox", [&](EntityID id) -> PushBox& {
 			return engine->ecs->Get<PushBox>(id);
 
 			});
+			*/
 		lua.set_function("GetHitBox", [&](EntityID id) -> HitBox& {
 			return engine->ecs->Get<HitBox>(id);
 
 			});
-        if (LoadScript("player1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\player1.lua")){}
-        else
-            LoadScript("player1", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\player1.lua");
-
-        if (LoadScript("player2", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\player2.lua")){}
-        else
-            LoadScript("player2", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\player2.lua");
-
-        if (LoadScript("test1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\aiRbow.lua")){}
-        else
-            LoadScript("test1", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\aiRbow.lua");
-		if (LoadScript("fireBall", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\fireBall.lua")) {}
-		else
-			LoadScript("fireBall", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\fireBall.lua");
-		if (LoadScript("ai1", "C:\\Users\\ruiz_\\toyEngine\\GitHub\\toyEngine\\toyEngine\\src\\ai1.lua")) {}
-		else
-			LoadScript("ai1", "C:\\Users\\Alex\\CLionProjects\\toyEngine\\toyEngine\\src\\ai1.lua");
-
+		LoadScript("player1.lua");
+		LoadScript("player2.lua");
+		LoadScript("aiRbow.lua");
+		LoadScript("fireBall.lua");
+		LoadScript("ai1.lua");
+		
 
         //scripts["test1"](10, 5,1);
-		scripts["Master"]();
+		scripts["MasterScript.lua"]();
 
 	}
 	
