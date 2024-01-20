@@ -54,6 +54,7 @@
 
 		int frameCount = 0;
 		double totalTime = 0.0;
+		double yAxisCushion;
 
 		while (running) {
 			// Calculate elapsed time since the last frame
@@ -86,7 +87,7 @@
 				sprites.push_back(s);
 				});
 			//rendering logic such as facing each other while not preforming an action
-			// Assuming entities with IDs 3 and 4 are the ones you want to compare
+			// entities with IDs 3 and 4 are the ones I want to compare
 			EntityID id1 = 3;
 			EntityID id2 = 4;
 
@@ -102,25 +103,25 @@
 
 			// Check if the first player is on the opposite side
 			if ((p1.x > p2.x) && (playerState1.name != "Jumping" && flipped1.isFlipped == false) ) {
-				// Player 1 is on the opposite side, handle accordingly (e.g., flip)
-				flipped1.isFlipped = true;  // Adjust as per your engine's conventions
+				// Player 1 is on the opposite side,flip
+				flipped1.isFlipped = true;  
 				//std::cout << "Player " << id1 << " is flipped" << std::endl;
 			}
 			if ((p1.x < p2.x) && (playerState1.name != "Jumping" && flipped1.isFlipped == true)){
-				// Player 1 is on the same side, handle accordingly (e.g., don't flip)
-				flipped1.isFlipped = false;  // Adjust as per your engine's conventions
+				// Player 1 is on the same side,  don't flip
+				flipped1.isFlipped = false; 
 				//std::cout << "Player " << id1 << " is not flipped" << std::endl;
 			}
 
 			// Check if the second player is on the opposite side
 			if (p2.x > p1.x) {
-				// Player 2 is on the opposite side, handle accordingly (e.g., flip)
-				flipped2.isFlipped = false;  // Adjust as per your engine's conventions
+				
+				flipped2.isFlipped = false; 
 				//std::cout << "Player " << id2 << " is flipped" << std::endl;
 			}
 			else {
-				// Player 2 is on the same side, handle accordingly (e.g., don't flip)
-				flipped2.isFlipped = true;  // Adjust as per your engine's conventions
+				
+				flipped2.isFlipped = true;  
 				//std::cout << "Player " << id2 << " is not flipped" << std::endl;
 			}
 
@@ -139,8 +140,9 @@
 				Collision& collision = ecs->Get<Collision>(id);
 
 				real previousY = position.y;
+				real previousX = position.x;
 				const double maxVelocity = 3.0; // Set your desired maximum velocity
-
+				
 				// Inside your physics update loop
 				if (physics.x > maxVelocity) {
 					physics.x = maxVelocity;
@@ -148,7 +150,7 @@
 				else if (physics.x < -maxVelocity) {
 					physics.x = -maxVelocity;
 				}
-				// Update position based on physics
+				// Update position based on physics in bounds of the stage
 				position.x += physics.x;
 				
 				position.y += physics.y;
@@ -158,28 +160,61 @@
 				physics.y += min(physics.gravity * deltaTime,physics.maxGravity );
 
 				// Check for collisions with other entities
-				ecs->ForEach<Collision, Position>([&](EntityID otherID) {
+				ecs->ForEach<Collision, Position, Physics>([&](EntityID otherID) {
 					if (id != otherID) {
 						Collision& otherCollision = ecs->Get<Collision>(otherID);
 						Position& otherPosition = ecs->Get<Position>(otherID);
-
-						CollisionResult result = CheckCollision(collision, position, otherCollision, otherPosition);
-
-						if (result.collision) {
-							if (!collision.isStatic) {
-								physics.y = 0.0;
-								position.y = previousY + min(result.penetrationY, 0.0);
-								//physics.x *= pow(physics.friction, deltaTime);
-								//physics.x *= physics.friction / deltaTime;
-							}
+						Physics& otherPhysics = ecs->Get<Physics>(otherID);
+						if (!collision.isStatic && otherCollision.isStatic) {
+							yAxisCushion = 30.0;
 						}
-						//if (CheckCollision(collision, position, otherCollision, otherPosition)) {
-						//		physics.y = 0.0;
-						//		position.y = previousY;
+						else {
+							yAxisCushion = 10;
+						}
+						CollisionResult resultY = CheckCollisionY(collision, position, otherCollision, otherPosition, yAxisCushion);
+						CollisionResult resultX = CheckCollisionX(collision, position, otherCollision, otherPosition);
+						
+						if ((resultX.collisionX && !collision.isStatic) || (resultY.collisionY && !resultX.collisionX && !collision.isStatic)) {
 
-						//}
+							if (resultY.collisionY && !resultX.collisionX) {
+								// Handle logic when on the ground (Y collision)
+								physics.y = 0.0;
+								position.y = previousY + min(resultY.penetrationY, 0.0);
+							}
+
+							if (resultX.collisionX && resultY.collisionY && (!collision.isStatic && otherCollision.isStatic)) {
+								// Handle logic when in the air (X collision)
+								std::cout << "Collision Detected in the air " << std::endl;
+								physics.x = 0.0;
+								position.x = previousX + min(resultX.penetrationX, 0.0);
+							}
+
+							// Player-to-player collision logic
+							if (!collision.isStatic && !otherCollision.isStatic) {
+								std::cout << "Collision Detected with player " << std::endl;
+
+								// Calculate velocity difference
+								real velocityDifference = physics.x - otherPhysics.x;
+
+								// Only apply the pushing effect if the pushing player has a higher velocity
+								if (velocityDifference > 0.0) {
+									real pushFraction = 0.5;  // Adjust this value to control the pushing effect
+									real pushAmount = velocityDifference * pushFraction;
+
+									position.x -= pushAmount;         // Adjust the position based on the pushing effect
+									otherPosition.x += pushAmount;    // Adjust the other player's position
+								}
+							}
+
+
+
+
+						}
+						
 					}
 				});
+
+
 			});
 
 

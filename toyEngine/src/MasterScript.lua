@@ -28,8 +28,8 @@ GetCollision(id).isStatic = true
 GetSprite(id).name = "rainb" 
 GetSprite(id).size = 140
 GetIsFlipped(id).isFlipped = false
-GetCollision(id).width = 100
-GetCollision(id).height = 140
+GetCollision(id).width = 150
+GetCollision(id).height = 130
 GetPhysics(id).velocityX = 0.0
 GetPhysics(id).velocityY = 0.0
 GetPhysics(id).gravity = 0
@@ -59,23 +59,28 @@ GetFlag(id).f = 1
 GetScript(id).name = "player1.lua"
 GetState(id).state = "Idle"
 GetState(id).counter = 0
-GetCollision(id).width = 50
-GetCollision(id).height = 50
+GetCollision(id).width = 10
+GetCollision(id).height = 30
+GetCollision(id).isStatic = false
 
 
 -- Player2
 id = GetUnusedId()
 GetPosition(id).px = 90
 GetPosition(id).py = -30
---GetPhysics(id).velocityX = 0.0
---GetPhysics(id).velocityY = 0.0
---GetPhysics(id).gravity = -0.08
+GetPhysics(id).velocityX = 0.0
+GetPhysics(id).velocityY = 0.0
+GetPhysics(id).gravity = -9.8
+--GetSprite(id).name = "rainb"
 GetSprite(id).name = "player2"
 GetSprite(id).size = 50
 GetIsFlipped(id).isFlipped = false
 GetFlag(id).f = 0.0
 GetScript(id).name = "player2.lua"
 GetState(id).state = "Idle"
+GetCollision(id).width = 10
+GetCollision(id).height = 30
+GetCollision(id).isStatic = false
 ---FireBall----------
 --id = GetUnusedId()
 --GetVelocity(id).vx = 2.5
@@ -108,3 +113,34 @@ GetState(id).state = "Idle"
 	--	p.x = 100;
 	--	p.y = 0;
 	--	Get<Position>(ID) = p;
+	-- wall--
+id = GetUnusedId()
+GetPosition(id).px = -280
+GetPosition(id).py = -50
+GetCollision(id).isStatic = true
+--this is  used to see the boxes for collision detection
+--GetSprite(id).name = "rainb" 
+--GetSprite(id).size = 130
+GetIsFlipped(id).isFlipped = false
+GetCollision(id).width = 150
+GetCollision(id).height = 300
+GetPhysics(id).velocityX = 0.0
+GetPhysics(id).velocityY = 0.0
+GetPhysics(id).gravity = 0
+GetPhysics(id).friction = 0.90
+
+	-- wall--
+id = GetUnusedId()
+GetPosition(id).px = 280
+GetPosition(id).py = -50
+GetCollision(id).isStatic = true
+--this is  used to see the boxes for collision detection
+--GetSprite(id).name = "rainb" 
+--GetSprite(id).size = 130
+GetIsFlipped(id).isFlipped = false
+GetCollision(id).width = 150
+GetCollision(id).height = 300
+GetPhysics(id).velocityX = 0.0
+GetPhysics(id).velocityY = 0.0
+GetPhysics(id).gravity = 0
+GetPhysics(id).friction = 0.90

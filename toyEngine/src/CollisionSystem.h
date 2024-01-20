@@ -3,8 +3,11 @@
 
 using namespace data;
 struct CollisionResult {
-    bool collision;
+    bool collisionX;
+    bool collisionY;
     real penetrationX;
     real penetrationY;
 };
-CollisionResult CheckCollision(const Collision& col1, const Position& pos1, const Collision& col2, const Position& pos2);
+CollisionResult CheckCollisionY(const Collision& col1, const Position& pos1, const Collision& col2, const Position& pos2, double yCushion);
+
+CollisionResult CheckCollisionX(const Collision& col1, const Position& pos1, const Collision& col2, const Position& pos2);
