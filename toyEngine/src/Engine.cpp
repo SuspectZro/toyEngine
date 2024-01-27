@@ -114,12 +114,12 @@
 			}
 
 			// Check if the second player is on the opposite side
-			if (p2.x > p1.x) {
+			if (p2.x > p1.x && playerState2.name != "Jumping") {
 				
 				flipped2.isFlipped = false; 
 				//std::cout << "Player " << id2 << " is flipped" << std::endl;
 			}
-			else {
+			else if(playerState2.name != "Jumping") {
 				
 				flipped2.isFlipped = true;  
 				//std::cout << "Player " << id2 << " is not flipped" << std::endl;
@@ -165,6 +165,10 @@
 						Collision& otherCollision = ecs->Get<Collision>(otherID);
 						Position& otherPosition = ecs->Get<Position>(otherID);
 						Physics& otherPhysics = ecs->Get<Physics>(otherID);
+
+						real spacing = (collision.width + otherCollision.width);
+
+						
 						if (!collision.isStatic && otherCollision.isStatic) {
 							yAxisCushion = 30.0;
 						}
@@ -176,7 +180,7 @@
 						
 						if ((resultX.collisionX && !collision.isStatic) || (resultY.collisionY && !resultX.collisionX && !collision.isStatic)) {
 
-							if (resultY.collisionY && !resultX.collisionX) {
+							if (resultY.collisionY && !resultX.collisionX && otherCollision.isStatic) {
 								// Handle logic when on the ground (Y collision)
 								physics.y = 0.0;
 								position.y = previousY + min(resultY.penetrationY, 0.0);
@@ -187,29 +191,94 @@
 								std::cout << "Collision Detected in the air " << std::endl;
 								physics.x = 0.0;
 								position.x = previousX + min(resultX.penetrationX, 0.0);
+								
+								
 							}
-
+					
 							// Player-to-player collision logic
 							if (!collision.isStatic && !otherCollision.isStatic) {
 								std::cout << "Collision Detected with player " << std::endl;
 
 								// Calculate velocity difference
 								real velocityDifference = physics.x - otherPhysics.x;
-
-								// Only apply the pushing effect if the pushing player has a higher velocity
-								if (velocityDifference > 0.0) {
-									real pushFraction = 0.5;  // Adjust this value to control the pushing effect
-									real pushAmount = velocityDifference * pushFraction;
-
-									position.x -= pushAmount;         // Adjust the position based on the pushing effect
-									otherPosition.x += pushAmount;    // Adjust the other player's position
+								real horizontalCenterDistance = std::abs(position.x - otherPosition.x);
+								real pushStrengthX = 0.2;
+								real pushFractionX = 0.5;
+								real pushAmountX = velocityDifference * pushFractionX;
+								real adjustedPushAmountX = (spacing - horizontalCenterDistance) * pushStrengthX;
+								
+						
+									
+								if (resultY.collisionY && !otherCollision.isStatic) {
+									// Handle logic when jumping on players (Y collision)
+									
 								}
+										// Only apply the pushing effect if the pushing player has a higher velocity
+								if (velocityDifference != 0.0) {
+									real pushFraction = 0.5;  // Adjust this value to control the pushing effect
+									real pushAmount = std::abs(velocityDifference) * pushFraction;
+
+									if (velocityDifference > 0.0) {
+												// Pushing from the right side
+										if (otherPosition.x < 115) {
+													//std::cout << "Pushing from the right" << std::endl;
+											otherPosition.x += pushAmount;
+										}
+										else {
+											std::cout << "Stop pushing" << std::endl;
+											position.x = previousX + min(resultX.penetrationX, 0.0);
+										}
+									}
+									else {
+												// Pushing from the left side
+										if (otherPosition.x > -115) {
+													//std::cout << "Pushing from the left" << std::endl;
+													otherPosition.x -= pushAmount;
+										}
+										else {
+											std::cout << "Stop pushing" << std::endl;
+											position.x = previousX + min(resultX.penetrationX, 0.0);
+										}
+									}
+									
+								}
+								std::cout << "hcD: " << horizontalCenterDistance << std::endl;
+									std::cout << "spacing: " << spacing << std::endl;
+								if (horizontalCenterDistance < spacing) {
+									if (position.x < otherPosition.x) {
+												// Player is to the right of the other player
+										std::cout << "Adjusted Push Amount X: " << adjustedPushAmountX << std::endl;
+
+										if (otherPosition.x <= 115) {
+											otherPosition.x += adjustedPushAmountX;
+										}
+										else {
+											std::cout << "Stop pushing" << std::endl;
+											position.x = previousX + min(resultX.penetrationX, 0.0);
+										}
+									}
+									else {
+												// Player is to the left of the other player
+										std::cout << "ELSE Adjusted Push Amount X: " << adjustedPushAmountX << std::endl;
+										if (otherPosition.x >= -115) {
+											otherPosition.x -= adjustedPushAmountX;
+										}
+										else {
+											std::cout << "Stop pushing" << std::endl;
+											position.x = previousX + min(resultX.penetrationX, 0.0);
+										}
+												//position.x -= adjustedPushAmountX;
+									}
+								}
+								
 							}
-
-
-
-
 						}
+								
+
+
+
+
+						
 						
 					}
 				});
