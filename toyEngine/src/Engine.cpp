@@ -51,11 +51,15 @@
 		std::vector<GraphicsManager::Sprite> sprites;
 		std::vector<GraphicsManager::Shape> allShapes;
 		//std::vector<GraphicsManager::PushBox> pushBoxes;
+		std::unordered_map<EntityID, std::vector<HitBoxData>> originalHitboxData;
+		std::unordered_map<EntityID, std::vector<HitBoxData>> originalHitboxData2;
 
 		int frameCount = 0;
 		double totalTime = 0.0;
 		double yAxisCushion;
-
+		int frameCounter = 0;
+		// Set the desired frequency
+		int printFrequency = 360;
 		while (running) {
 			// Calculate elapsed time since the last frame
 			auto currentTime = std::chrono::high_resolution_clock::now();
@@ -95,12 +99,12 @@
 			Position p1 = ecs->Get<Position>(id1);
 			State playerState1 = ecs->Get<State>(id1);
 			isFlipped& flipped1 = ecs->Get<isFlipped>(id1);
-
+			HitBox& hitboxp1 = ecs->Get<HitBox>(id1);
 			// Get components for the second entity
 			Position p2 = ecs->Get<Position>(id2);
 			State playerState2 = ecs->Get<State>(id2);
 			isFlipped& flipped2 = ecs->Get<isFlipped>(id2);
-
+			HitBox& hitboxp2 = ecs->Get<HitBox>(id2);
 			// Check if the first player is on the opposite side
 			if ((p1.x > p2.x) && (playerState1.name != "Jumping" && flipped1.isFlipped == false) ) {
 				// Player 1 is on the opposite side,flip
@@ -124,9 +128,54 @@
 				flipped2.isFlipped = true;  
 				//std::cout << "Player " << id2 << " is not flipped" << std::endl;
 			}
+			// Reset hitboxes for player 1 if idle
+			if (playerState1.name == "Idle") {
+				if (originalHitboxData.find(id1) == originalHitboxData.end()) {
+					originalHitboxData[id1] = hitboxp1.hitboxes; // Copy hitbox data
+				}
+				hitboxp1.hitboxes = originalHitboxData[id1]; // Restore original hitbox data
+			}
 
+			// Reset hitboxes for player 2 if idle
+			if (playerState2.name == "Idle") {
+				if (originalHitboxData2.find(id2) == originalHitboxData2.end()) {
+					originalHitboxData2[id2] = hitboxp2.hitboxes; // Copy hitbox data
+				}
+				hitboxp2.hitboxes = originalHitboxData2[id2]; // Restore original hitbox data
+			}
 
+			bool currentPlayerHit = false;
+				for (const auto& hitboxp1 : hitboxp1.hitboxes) {
+					if (hitboxp1.hit && !currentPlayerHit) {
+						std::cout << "Player 1 is punching" << std::endl;
+						currentPlayerHit = true;
+						break;
+					}
+				}
+			
 
+			bool otherPlayerHit = false;
+
+			
+				for (const auto& hitboxp2 : hitboxp2.hitboxes) {
+					if (hitboxp2.hit) {
+						std::cout << "Player 2 is punching" << std::endl;
+						otherPlayerHit = true;
+						break;
+					}
+				}
+			
+
+			/*
+			ecs->ForEach<State, HitBox>([&](EntityID id) {
+				HitBox& hitbox = ecs->Get<HitBox>(id);
+				// Check if the entity is a player (based on state or some other criterion)
+				if (playerState1.name == "Idle") {
+					// Store the original hitbox data for this player entity
+					originalHitboxData[id] = hitbox.hitboxes;
+				}
+				});
+			*/
 			ecs->ForEach<Script>([&](EntityID id) {
 
 				script->execute(ecs->Get<Script>(id).name, id);
@@ -134,40 +183,42 @@
 				});
 			double deltaTime = frameDuration.count();
 			// Physics System
-			ecs->ForEach<Physics, Position, Collision>([&](EntityID id) {
+			ecs->ForEach<Physics, Position, Collision, HitBox>([&](EntityID id) {
 				Physics& physics = ecs->Get<Physics>(id);
 				Position& position = ecs->Get<Position>(id);
 				Collision& collision = ecs->Get<Collision>(id);
+				HitBox& hitbox = ecs->Get<HitBox>(id);
 
+				
+
+				
 				real previousY = position.y;
 				real previousX = position.x;
-				const double maxVelocity = 3.0; // Set your desired maximum velocity
-				
-				// Inside your physics update loop
+				const double maxVelocity = 3.0;
+
 				if (physics.x > maxVelocity) {
 					physics.x = maxVelocity;
 				}
 				else if (physics.x < -maxVelocity) {
 					physics.x = -maxVelocity;
 				}
-				// Update position based on physics in bounds of the stage
-				position.x += physics.x;
-				
+				// Update position based on physics
+				position.x += physics.x;				
 				position.y += physics.y;
 
 				// Gradually apply gravity up to maxGravity
-
 				physics.y += min(physics.gravity * deltaTime,physics.maxGravity );
 
 				// Check for collisions with other entities
-				ecs->ForEach<Collision, Position, Physics>([&](EntityID otherID) {
+				ecs->ForEach<Collision, Position, Physics, HitBox>([&](EntityID otherID) {
 					if (id != otherID) {
 						Collision& otherCollision = ecs->Get<Collision>(otherID);
 						Position& otherPosition = ecs->Get<Position>(otherID);
 						Physics& otherPhysics = ecs->Get<Physics>(otherID);
-
+						HitBox& otherHitBox = ecs->Get<HitBox>(otherID);
+						
 						real spacing = (collision.width + otherCollision.width);
-
+					
 						
 						if (!collision.isStatic && otherCollision.isStatic) {
 							yAxisCushion = 30.0;
@@ -188,18 +239,16 @@
 
 							if (resultX.collisionX && resultY.collisionY && (!collision.isStatic && otherCollision.isStatic)) {
 								// Handle logic when in the air (X collision)
-								std::cout << "Collision Detected in the air " << std::endl;
 								physics.x = 0.0;
 								position.x = previousX + min(resultX.penetrationX, 0.0);
 								
 								
 							}
 					
-							// Player-to-player collision logic
+							// Player-to-player collision logic-------------------------------------------------------------------------------------
 							if (!collision.isStatic && !otherCollision.isStatic) {
-								std::cout << "Collision Detected with player " << std::endl;
+								//std::cout << "Collision Detected with player " << std::endl;
 
-								// Calculate velocity difference
 								real velocityDifference = physics.x - otherPhysics.x;
 								real horizontalCenterDistance = std::abs(position.x - otherPosition.x);
 								real pushStrengthX = 0.2;
@@ -213,15 +262,15 @@
 									// Handle logic when jumping on players (Y collision)
 									
 								}
-										// Only apply the pushing effect if the pushing player has a higher velocity
+								// Only apply the pushing effect if the pushing player has a higher velocity
 								if (velocityDifference != 0.0) {
-									real pushFraction = 0.5;  // Adjust this value to control the pushing effect
+									real pushFraction = 0.5;  
 									real pushAmount = std::abs(velocityDifference) * pushFraction;
 
 									if (velocityDifference > 0.0) {
-												// Pushing from the right side
+										// Pushing from the right side
 										if (otherPosition.x < 115) {
-													//std::cout << "Pushing from the right" << std::endl;
+										//std::cout << "Pushing from the right" << std::endl;
 											otherPosition.x += pushAmount;
 										}
 										else {
@@ -230,10 +279,9 @@
 										}
 									}
 									else {
-												// Pushing from the left side
+									// Pushing from the left side
 										if (otherPosition.x > -115) {
-													//std::cout << "Pushing from the left" << std::endl;
-													otherPosition.x -= pushAmount;
+											otherPosition.x -= pushAmount;
 										}
 										else {
 											std::cout << "Stop pushing" << std::endl;
@@ -242,13 +290,11 @@
 									}
 									
 								}
-								std::cout << "hcD: " << horizontalCenterDistance << std::endl;
-									std::cout << "spacing: " << spacing << std::endl;
+								//std::cout << "hcD: " << horizontalCenterDistance << std::endl;
+								//std::cout << "spacing: " << spacing << std::endl;
 								if (horizontalCenterDistance < spacing) {
 									if (position.x < otherPosition.x) {
-												// Player is to the right of the other player
-										std::cout << "Adjusted Push Amount X: " << adjustedPushAmountX << std::endl;
-
+										// Player is to the right of the other player
 										if (otherPosition.x <= 115) {
 											otherPosition.x += adjustedPushAmountX;
 										}
@@ -258,8 +304,7 @@
 										}
 									}
 									else {
-												// Player is to the left of the other player
-										std::cout << "ELSE Adjusted Push Amount X: " << adjustedPushAmountX << std::endl;
+										// Player is to the left of the other player
 										if (otherPosition.x >= -115) {
 											otherPosition.x -= adjustedPushAmountX;
 										}
@@ -267,7 +312,6 @@
 											std::cout << "Stop pushing" << std::endl;
 											position.x = previousX + min(resultX.penetrationX, 0.0);
 										}
-												//position.x -= adjustedPushAmountX;
 									}
 								}
 								
@@ -442,16 +486,48 @@
 			"color", &Shapes::color,
 			"scale", &Shapes::scale
 			);
-		lua.new_usertype<HitBox>("HitBox",
+		/*lua.new_usertype<HitBox>("HitBox",
+			sol::constructors<HitBox()>(),
+			"hitboxes", sol::property(
+				[&](HitBox& hb) -> sol::table {
+					sol::table result = lua.create_table();
+					for (size_t i = 0; i < hb.hitboxes.size(); ++i) {
+						sol::table hbTable = lua.create_table();
+						hbTable["width"] = hb.hitboxes[i].width;
+						hbTable["height"] = hb.hitboxes[i].height;
+						hbTable["hit"] = hb.hitboxes[i].hit;
+						result[i + 1] = hbTable; // Lua tables start indexing from 1
+					}
+					return result;
+				},
+				[&](HitBox& hb, sol::table value) {
+					size_t newSize = value.size();
+					hb.hitboxes.resize(newSize);
+					for (size_t i = 0; i < newSize; ++i) {
+						sol::table hbTable = value[i + 1];
+						hb.hitboxes[i].width = hbTable["width"];
+						hb.hitboxes[i].height = hbTable["height"];
+						hb.hitboxes[i].hit = hbTable["hit"];
+					}
+				}
+					)
+			);
+			*/
+
+
+		/*lua.new_usertype<HitBox>("HitBox",
 			sol::constructors<HitBox()>(),
 			//"p", &PushBox::p,
 			//"angle", &PushBox::angle,
 			//"width", &HitBox::x,
 			//"height", &HitBox::y,
-			"hit", &HitBox::hit
+			"hit", &HitBox::hit,
+			"width", &HitBox::width,
+			"height", &HitBox::height
 			//"from", &HitBox::from
 			//"hit", &PushBox::hit
 			);
+			*/
 		lua.set_function("GetState", [&](EntityID id) -> State& {
 			return engine->ecs->Get<State>(id);
 			});
@@ -499,10 +575,78 @@
 
 			});
 			*/
-		lua.set_function("GetHitBox", [&](EntityID id) -> HitBox& {
-			return engine->ecs->Get<HitBox>(id);
+		lua.set_function("GetHitBoxes", [&](EntityID id) -> sol::table {
+			auto& hitBoxes = engine->ecs->Get<HitBox>(id).hitboxes;
+
+			// Create a Lua table to store hitboxes' data
+			sol::table hitboxesTable = lua.create_table();
+
+			// Iterate over hitboxes and add them to the Lua table
+			for (size_t i = 0; i < hitBoxes.size(); ++i) {
+				sol::table hitboxData = lua.create_table();
+				hitboxData["width"] = hitBoxes[i].width;
+				hitboxData["height"] = hitBoxes[i].height;
+				hitboxData["hit"] = hitBoxes[i].hit;
+				hitboxData["offsetX"] = hitBoxes[i].offsetX;  // Include offsetX
+				hitboxData["offsetY"] = hitBoxes[i].offsetY;  // Include offsetY
+
+				// Add hitboxData table to the hitboxesTable
+				hitboxesTable.add(hitboxData);
+			}
+
+			return hitboxesTable;
+			});
+
+
+
+			
+		lua.set_function("AddHitBox", [&](sol::table hitboxData) {
+			EntityID id = hitboxData["id"];
+			double width = hitboxData["width"];
+			double height = hitboxData["height"];
+			bool hit = hitboxData["hit"];
+			double offsetX = hitboxData["offsetX"];  
+			double offsetY = hitboxData["offsetY"];  
+
+			auto& hitBox = engine->ecs->Get<HitBox>(id);
+			hitBox.hitboxes.push_back({ hit, width, height, offsetX, offsetY });
+			});
+
+		lua.set_function("UpdateHitBox", [&](EntityID id, size_t hitboxIndex, sol::table updatedHitboxData) {
+			auto& hitBoxes = engine->ecs->Get<HitBox>(id).hitboxes;
+
+			// Check if the hitbox index is valid
+			if (hitboxIndex < hitBoxes.size()) {
+				// Update the specified hitbox data
+				HitBoxData& hitboxData = hitBoxes[hitboxIndex];
+				if (updatedHitboxData["hit"] != NULL) {
+					hitboxData.hit = updatedHitboxData["hit"];
+				}
+				if (updatedHitboxData["offsetX"] != NULL) {
+					hitboxData.offsetX = updatedHitboxData["offsetX"];
+				}
+				if (updatedHitboxData["offsetY"] != NULL) {
+					hitboxData.offsetY = updatedHitboxData["offsetY"];
+				}
+				// Similarly, add conditions for other fields you want to update
+			}
+			else {
+				// Handle invalid hitbox index
+				std::cerr << "Invalid hitbox index" << std::endl;
+			}
+			});
+
+
+
+
+		/*lua.set_function("GetHitBoxes", [&](EntityID id) -> std::vector<HitBox>& {
+			return engine->ecs->GetHitBoxes<HitBox>(id).hitboxes;
 
 			});
+		lua.set_function("GetHitBoxData", [&](EntityID id) -> HitBox& {
+			return engine->ecs->Get<HitBox>(id);
+			});
+			*/
 		LoadScript("player1.lua");
 		LoadScript("player2.lua");
 		LoadScript("aiRbow.lua");

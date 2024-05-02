@@ -34,6 +34,15 @@ GetPhysics(id).velocityX = 0.0
 GetPhysics(id).velocityY = 0.0
 GetPhysics(id).gravity = 0
 GetPhysics(id).friction = 0.90
+AddHitBox({
+    id = id,
+    width = 0,
+    height = 0,
+    hit = false,
+    offsetX = 0,
+    offsetY = 0
+})
+
 --GetShape(id).scale = 10
 --GetShape(id).color = {1,0,0,1}
 --GetPushBox(id).pushW = 10
@@ -47,7 +56,7 @@ GetPhysics(id).friction = 0.90
 -- Player1
 id = GetUnusedId()
 GetPosition(id).px = -90
-GetPosition(id).py = 140
+GetPosition(id).py = -30
 GetPhysics(id).velocityX = 0.0
 GetPhysics(id).velocityY = 0.0
 GetPhysics(id).gravity = -9.8
@@ -55,15 +64,31 @@ GetPhysics(id).gravity = -9.8
 GetSprite(id).name = "player1"
 GetSprite(id).size = 50
 GetIsFlipped(id).isFlipped = false
-GetFlag(id).f = 1
+GetFlag(id).f = 0
 GetScript(id).name = "player1.lua"
 GetState(id).state = "Idle"
 GetState(id).counter = 0
+--GetState(id).charge = false
 GetCollision(id).width = 10
 GetCollision(id).height = 30
 GetCollision(id).isStatic = false
-
-
+AddHitBox({
+    id = id,
+    width = 3,
+    height = 3,
+    hit = false,
+	offsetX = 10,  -- Replace with your desired offset value
+    offsetY = 25
+})
+AddHitBox({
+    id = id,
+    width = 10,
+    height = 10,
+    hit = false,
+	offsetX = 15,  -- Replace with your desired offset value
+    offsetY = -10
+})
+--AddHitBox(id,10,10,false)
 -- Player2
 id = GetUnusedId()
 GetPosition(id).px = 90
@@ -82,6 +107,22 @@ GetState(id).counter = 0
 GetCollision(id).width = 10
 GetCollision(id).height = 30
 GetCollision(id).isStatic = false
+AddHitBox({
+    id = id,
+    width = 25,
+    height = 25,
+    hit = false,
+	offsetX = 5,  
+    offsetY = -10
+})
+AddHitBox({
+    id = id,
+    width = 25,
+    height = 25,
+    hit = false,
+	offsetX = 15,  
+    offsetY = -10
+})
 ---FireBall----------
 --id = GetUnusedId()
 --GetVelocity(id).vx = 2.5
@@ -129,6 +170,14 @@ GetPhysics(id).velocityX = 0.0
 GetPhysics(id).velocityY = 0.0
 GetPhysics(id).gravity = 0
 GetPhysics(id).friction = 0.90
+AddHitBox({
+    id = id,
+    width = 0,
+    height = 0,
+    hit = false,
+    offsetX = 0,
+    offsetY = 0
+})
 
 	-- wall--
 id = GetUnusedId()
@@ -145,3 +194,32 @@ GetPhysics(id).velocityX = 0.0
 GetPhysics(id).velocityY = 0.0
 GetPhysics(id).gravity = 0
 GetPhysics(id).friction = 0.90
+AddHitBox({
+    id = id,
+    width = 0,
+    height = 0,
+    hit = false,
+    offsetX = 0,
+    offsetY = 0
+})
+
+--hitBoxes for player 1-----
+-- Player1
+id = GetUnusedId()
+GetPosition(id).px = -80
+GetPosition(id).py = -5
+GetSprite(id).name = "rainb"
+--GetSprite(id).name = "player1"
+GetSprite(id).size = 3
+GetIsFlipped(id).isFlipped = false
+GetHitBox(id).width = 25
+GetHitBox(id).hit = false
+GetHitBox(id).height = 25
+--GetFlag(id).f = 0
+--GetScript(id).name = "player1.lua"
+--GetState(id).state = "Idle"
+--GetState(id).counter = 0
+--GetState(id).charge = false
+--GetCollision(id).width = 10
+--GetCollision(id).height = 30
+--GetCollision(id).isStatic = false

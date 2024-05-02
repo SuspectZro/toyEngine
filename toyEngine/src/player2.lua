@@ -1,5 +1,6 @@
 function runState(id)
 	local physics = GetPhysics(id)
+	local hitboxes = GetHitBoxes(id)
 	-- body
 		state = GetState(id).state
 		--State that need a counter------------
@@ -139,8 +140,12 @@ if(KeyIsDown(KEYBOARD.RSHIFT))
 then
 	if(GetState(id).counter == 0)
 	then
+		hitboxes = GetHitBoxes(id)
 		GetState(id).state = "Punch"
+		hitboxIndex = 0
 		GetState(id).counter = 40
+		UpdateHitBox(id, hitboxIndex, { hit = true, offsetX = 20, offsetY = -10 })
+		--PrintHitBoxes(hitboxes)
 	end
 end
 
@@ -201,6 +206,8 @@ end
 if  ( not KeyIsDown(KEYBOARD.LEFT) and  not KeyIsDown(KEYBOARD.RIGHT) and GetState(id).state ~= "Jumping") then
     GetPhysics(id).velocityX = 0.0
 end
+
+
 --if( GetState(id).state ~= "Jumping" and GetState(id).state ~= "Slide")
 --then
 --	if(GetState(id).state ~= "Dash")
@@ -279,3 +286,23 @@ end
 --	GetVelocity(id).vy = 0
 --	GetPosition(id).py = -29.9
 --end
+function PrintHitBoxes(hitboxes)
+print("in function")
+    --local hitboxes = GetHitBoxes(id)
+
+    -- Print some debug information
+    print("Entity ID: " .. id)
+    print("Hitboxes count: " .. #hitboxes)
+
+    -- Iterate over the hitboxes and print their details
+    for i, hitboxData in ipairs(hitboxes) do
+    print("Hitbox " .. i .. ":")
+    print("Width: " .. hitboxData.width)
+    print("Height: " .. hitboxData.height)
+    print("Hit: " .. tostring(hitboxData.hit))
+    print("OffsetX: " .. hitboxData.offsetX)  
+    print("OffsetY: " .. hitboxData.offsetY)  
+    print("-------------------------")
+end
+
+end

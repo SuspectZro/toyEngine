@@ -38,6 +38,9 @@ public:
 	void AddNewComponent(SparseSet<T>* comp) {
 		components.insert({ typeid(T).hash_code(),comp });
 	}
+	void AddNewComponent(SparseSet<HitBox>* comp) {
+		components.insert({ typeid(HitBox).hash_code(), comp });
+	}
 
 	template<typename T>
 	SparseSet<T>& GetComponent() {
@@ -55,6 +58,11 @@ public:
 	template<typename T>
 	T& Get(EntityID ID) {
 		return GetComponent<T>().values[ID];
+	}
+
+	template<typename T>
+	std::vector<HitBoxData>& GetHitBoxes(EntityID ID) {
+		return GetComponent<T>().values[ID].hitboxes;
 	}
 
 	EntityID GetUnusedID() {

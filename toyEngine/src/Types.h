@@ -33,6 +33,8 @@ namespace data {
 	//box struct
 	//struct PushBox: public vec4{ real x; real y; real width; real height; };
 	//struct PushBox { real x; real y; real width; real height; vec4 color; };
-	struct HitBox { bool hit; };
+	struct HitBoxData { bool hit; real width; real height; real offsetX; real offsetY; };
+	struct HitBox { std::vector<HitBoxData> hitboxes; };
+	
 	
 }
